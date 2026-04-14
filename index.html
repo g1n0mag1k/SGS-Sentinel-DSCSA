@@ -1511,14 +1511,14 @@
       <h5>How This Tool Prevents FDA 483 Observations</h5>
       <p>
         FDA 483 observations are issued when investigators identify conditions that may constitute
-        violations of the Food Drug &amp; Cosmetic Act and related statutes, including DSCSA §582.
+        violations of the Food, Drug &amp; Cosmetic Act and related statutes, including DSCSA §582.
         The SGS-Sentinel Technical Audit Sandbox catches non-interoperable data <em>before</em> it
         reaches a trading partner's EPCIS repository — the #1 root cause of failed T-STAMP queries
         and interoperability breakdowns that trigger FDA scrutiny.
       </p>
     </div>
     <div class="docs-item">
-      <h5>Pre-Transmission Validation: The First Line of Defence</h5>
+      <h5>Pre-Transmission Validation: The First Line of Defense</h5>
       <p>
         By validating EPCIS 2.0 JSON-LD payloads in the Audit Sandbox, organisations catch
         CBV 2.0 vocabulary errors, missing mandatory fields (<code>eventTime</code>,
@@ -2919,8 +2919,8 @@ function generateCorrectionEvent(originalDoc, validationErrors) {
         action: 'OBSERVE',
         bizStep: 'inspecting',
         disposition: 'needs_replacement',
-        readPoint: { id: 'urn:epc:id:sgln:0000000.00000.0' },
-        epcList: originalEpcs.length > 0 ? originalEpcs : ['urn:epc:id:sgtin:REPLACE_WITH_ACTUAL_GTIN.SERIAL'],
+        readPoint: { id: originalDoc && originalDoc.epcisBody && originalDoc.epcisBody.eventList && originalDoc.epcisBody.eventList[0] && originalDoc.epcisBody.eventList[0].readPoint ? originalDoc.epcisBody.eventList[0].readPoint.id : 'urn:epc:id:sgln:9999999.99999.0' },
+        epcList: originalEpcs.length > 0 ? originalEpcs : ['urn:epc:id:sgtin:9999999.999999.PLACEHOLDER001'],
         'sgs:correctionMetadata': {
           correctionId: 'SGS-COR-' + Date.now(),
           originalEventTime: originalEventTime || 'UNKNOWN',
@@ -2944,7 +2944,7 @@ function getCorrectionSuggestion(error) {
     MISSING_EVENT_TYPE: 'Add a "type" field to each event (e.g., "ObjectEvent", "AggregationEvent").',
     INVALID_EVENT_TYPE: 'Replace the event type with a valid EPCIS 2.0 type: ObjectEvent, AggregationEvent, TransactionEvent, TransformationEvent, or AssociationEvent.',
     MISSING_EVENT_TIME: 'Add "eventTime" with an ISO 8601 timestamp (e.g., "2026-04-14T12:00:00Z").',
-    INVALID_EVENT_TIME: 'Correct the eventTime to valid ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).',
+    INVALID_EVENT_TIME: 'Correct the eventTime to valid ISO 8601 format (e.g., "2026-04-14T12:00:00Z" or "2026-04-14T12:00:00+00:00").',
     INVALID_BIZSTEP: 'Replace the bizStep with a valid CBV 2.0 short name (e.g., "shipping", "receiving", "commissioning").',
     INVALID_ACTION: 'Replace the action with one of: ADD, OBSERVE, DELETE.',
     MISSING_EPCS: 'Add an "epcList" array with at least one EPC URI (e.g., "urn:epc:id:sgtin:0355555.000123.SN00001" or GS1 Digital Link URI).'
