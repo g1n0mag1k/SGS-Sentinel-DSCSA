@@ -986,9 +986,746 @@
     }
 
     .disclaimer-icon { flex-shrink: 0; font-size: 16px; }
+
+    /* ── Onboarding Modal ── */
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .onboarding-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(3, 7, 18, 0.72);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 220ms ease, visibility 220ms ease;
+    }
+
+    .onboarding-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .onboarding-modal {
+      width: min(560px, 100%);
+      background: linear-gradient(180deg, rgba(20, 29, 53, 0.98) 0%, rgba(15, 22, 41, 0.98) 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: 24px;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+      padding: 28px;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 220ms ease, opacity 220ms ease;
+      opacity: 0;
+    }
+
+    .onboarding-overlay.open .onboarding-modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .onboarding-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(34, 197, 94, 0.15));
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .onboarding-modal h2 {
+      font-size: clamp(1.4rem, 3.2vw, 2rem);
+      line-height: 1.2;
+      margin-bottom: 14px;
+      max-width: 18ch;
+    }
+
+    .onboarding-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .onboarding-copy p strong {
+      color: var(--text-primary);
+    }
+
+    .onboarding-cta {
+      margin-top: 22px;
+      width: 100%;
+      justify-content: center;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      color: #fff;
+      font-size: 0.95rem;
+      padding: 14px 18px;
+      box-shadow: 0 18px 32px rgba(34, 197, 94, 0.22);
+    }
+
+    .onboarding-cta:hover,
+    .onboarding-cta:focus-visible {
+      background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+      box-shadow: 0 22px 40px rgba(34, 197, 94, 0.28);
+      outline: none;
+    }
+
+    @media (max-width: 480px) {
+      .onboarding-overlay {
+        padding: 16px;
+        align-items: flex-end;
+      }
+
+      .onboarding-modal {
+        padding: 22px 18px;
+        border-radius: 20px;
+      }
+
+      .onboarding-copy {
+        font-size: 0.92rem;
+      }
+    }
+
+    /* ── Tooltip System ── */
+    .tooltip-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      margin: 0 3px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--accent-cyan);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: help;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      transition: all 200ms ease;
+      flex-shrink: 0;
+    }
+
+    .tooltip-icon:hover {
+      background: rgba(59, 130, 246, 0.35);
+      border-color: rgba(59, 130, 246, 0.6);
+      transform: scale(1.08);
+    }
+
+    .tooltip-container {
+      position: relative;
+      display: inline;
+    }
+
+    .tooltip-popup {
+      position: fixed;
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 220px;
+      z-index: 999;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: auto;
+      transform: translateY(4px);
+      transition: opacity 150ms ease, visibility 150ms ease, transform 150ms ease;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    .tooltip-popup.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .tooltip-popup::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid var(--bg-card);
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 480px) {
+      .tooltip-popup {
+        max-width: 180px;
+        font-size: 0.80rem;
+        padding: 10px 12px;
+      }
+    }
+
+    /* ── FEATURE THREE: Lead Capture & Conversion Layer ────────────────── */
+    #lead-capture-section {
+      margin: 2rem auto;
+      max-width: 720px;
+      padding: 0 1rem;
+    }
+
+    .lc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+
+    .lc-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .lc-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .lc-headline {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 0.4rem;
+      line-height: 1.4;
+    }
+
+    .lc-subhead {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .lc-value-props {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .lc-value-props li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .lc-check {
+      color: #4caf8a;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .lc-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .lc-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .lc-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .lc-required {
+      color: #e05c5c;
+      margin-left: 2px;
+    }
+
+    .lc-optional {
+      color: var(--text-muted);
+      font-weight: 400;
+      text-transform: none;
+      font-size: 0.78rem;
+    }
+
+    .lc-input {
+      background: rgba(10,14,26,0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: 7px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      padding: 0.6rem 0.85rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .lc-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+    }
+
+    .lc-input.lc-input-error {
+      border-color: #e05c5c;
+      box-shadow: 0 0 0 3px rgba(224,92,92,0.15);
+    }
+
+    .lc-field-error {
+      font-size: 0.78rem;
+      color: #e05c5c;
+      min-height: 1em;
+    }
+
+    .lc-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .lc-btn-primary {
+      background: var(--accent-blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.85rem 1.75rem;
+      cursor: pointer;
+      width: 100%;
+      max-width: 400px;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.01em;
+      box-shadow: 0 2px 12px rgba(59,130,246,0.3);
+      font-family: inherit;
+    }
+
+    .lc-btn-primary:hover {
+      background: #2563eb;
+      box-shadow: 0 4px 18px rgba(59,130,246,0.45);
+      transform: translateY(-1px);
+    }
+
+    .lc-btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .lc-link-secondary {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .lc-link-secondary:hover {
+      color: var(--text-primary);
+    }
+    /* ── END FEATURE THREE ──────────────────────────────────────────────── */
+
+    /* ── FEATURE FOUR: Progress Persistence Banner ──────────────────────────────────────── */
+    #progress-resume-banner {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.65rem;
+      background: #fffbe6;
+      border: 1px solid #f0d060;
+      border-radius: 8px;
+      padding: 0.7rem 1.1rem;
+      margin: 0 0 1.25rem;
+      font-size: 0.875rem;
+      color: #5a4800;
+      box-shadow: 0 2px 8px rgba(240,208,60,0.18);
+    }
+
+    .prb-text {
+      font-weight: 500;
+    }
+
+    .prb-link {
+      font-weight: 700;
+      color: #b07d00;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .prb-link:hover {
+      color: #7a5500;
+    }
+
+    .prb-link-muted {
+      font-weight: 500;
+      color: #937a30;
+    }
+
+    .prb-link-muted:hover {
+      color: #5a4800;
+    }
+
+    .prb-divider {
+      color: #c8aa50;
+      user-select: none;
+    }
+    /* ── END FEATURE FOUR ───────────────────────────────────────────────── */
+
+    /* ── FEATURE FIVE: Shareable Results URL ───────────────────────────── */
+    .share-btn {
+      background: var(--panel-bg, #1a1f2e);
+      border: 1px solid var(--border-color, #2e3650);
+      border-radius: 7px;
+      color: var(--text-secondary, #b0b8cc);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .share-btn:hover {
+      background: var(--accent, #4a8fe8);
+      border-color: var(--accent, #4a8fe8);
+      color: #fff;
+    }
+
+    .share-btn:active {
+      opacity: 0.85;
+    }
+
+    /* Shared result top banner */
+    #shared-result-banner {
+      width: 100%;
+      background: #1a2a3a;
+      border-bottom: 2px solid var(--accent, #4a8fe8);
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      z-index: 999;
+    }
+
+    .srb-inner {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .srb-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .srb-text {
+      font-size: 0.875rem;
+      color: var(--text-secondary, #b0b8cc);
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .srb-cta {
+      background: var(--accent, #4a8fe8);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+
+    .srb-cta:hover {
+      background: var(--accent-hover, #3a7fd8);
+    }
+
+    /* Read-only overlay on assessment sections when viewing shared result */
+    .sr-readonly-overlay {
+      position: relative;
+      pointer-events: none;
+      opacity: 0.45;
+      user-select: none;
+    }
+
+    .sr-readonly-overlay::after {
+      content: 'Read-only — shared result view';
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,31,46,0.92);
+      color: var(--text-muted, #8a94b0);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color, #2e3650);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 10;
+    }
+    /* ── END FEATURE FIVE ───────────────────────────────────────────────── */
+
+    /* MOBILE REDESIGN v2.2 ───────────────────────────────────────────────────── */
+
+    /* ── KPI Grid: 2×2 on desktop, single column on mobile ─────────────── */
+    #score-panel-anchor {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .kpi-card {
+      background: var(--panel-bg, #1a1f2e);
+      border: 1px solid var(--border-color, #2e3650);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .kpi-card-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted, #8a94b0);
+    }
+
+    .kpi-card-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-primary, #e8ecf4);
+      line-height: 1.1;
+      word-break: break-word;
+    }
+
+    /* ── Gauge wrap: centers SVG with overlaid text ─────────────────────── */
+    .sr-gauge-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 200px;
+      flex-shrink: 0;
+    }
+
+    .sr-gauge-svg {
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+
+    .sr-gauge-track {
+      stroke: var(--border-color, #2e3650);
+    }
+
+    .sr-gauge-fill {
+      stroke: #4caf8a;
+      transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  stroke 0.4s ease;
+    }
+
+    /* Color tiers applied via JS to #score-arc-fill */
+    .sr-gauge-fill.tier-red    { stroke: #e05c5c; }
+    .sr-gauge-fill.tier-orange { stroke: #e8943a; }
+    .sr-gauge-fill.tier-green  { stroke: #4caf8a; }
+
+    .sr-gauge-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      text-align: center;
+      width: 110px;
+    }
+
+    .sr-gauge-pct {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary, #e8ecf4);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .sr-gauge-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted, #8a94b0);
+      margin-top: 0.2rem;
+    }
+
+    /* ── Score panel layout: gauge left, KPIs right on desktop ──────────── */
+    .score-panel-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .score-panel-gauge-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .score-panel-kpi-col {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    /* ── Responsive: mobile ─────────────────────────────────────────────── */
+    @media (max-width: 767px) {
+      .sr-gauge-wrap {
+        width: 150px;
+        height: 150px;
+      }
+
+      .sr-gauge-svg {
+        width: 150px;
+        height: 150px;
+      }
+
+      /* Scale the gauge geometry for 150px: r stays 80, viewBox 200,
+         SVG scales via CSS so no SVG attr changes needed */
+
+      .sr-gauge-pct {
+        font-size: 1.45rem;
+      }
+
+      .sr-gauge-center {
+        width: 85px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .kpi-card {
+        padding: 0.9rem 1rem;
+        width: 100%;
+      }
+
+      .kpi-card-value {
+        font-size: 1.35rem;
+      }
+
+      .score-panel-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .score-panel-kpi-col {
+        width: 100%;
+        min-width: 0;
+      }
+
+      /* Prevent any horizontal scroll */
+      #score-panel-anchor,
+      .score-panel-inner,
+      .kpi-grid {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .kpi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* END MOBILE REDESIGN v2.2 ─────────────────────────────────────────── */
   </style>
 </head>
 <body>
+
+<!-- FEATURE FIVE: Shared Result View Banner -->
+<div id="shared-result-banner" role="status" aria-label="Shared assessment result notification" style="display:none;">
+  <div class="srb-inner">
+    <span class="srb-icon" aria-hidden="true">🔗</span>
+    <span class="srb-text">You are viewing a shared SGS-Sentinel assessment result.</span>
+    <button
+      class="srb-cta"
+      aria-label="Clear shared result and take your own assessment"
+      onclick="srClearAndReset()"
+    >Take My Own Assessment</button>
+  </div>
+</div>
+<!-- END FEATURE FIVE BANNER -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     ONBOARDING MODAL
+     ═══════════════════════════════════════════════════════════ -->
+<div class="onboarding-overlay" id="onboarding-overlay" role="dialog" aria-modal="true" aria-labelledby="onboarding-title" aria-describedby="onboarding-description" hidden>
+  <div class="onboarding-modal" role="document">
+    <div class="onboarding-icon" aria-hidden="true">🛡️</div>
+    <h2 id="onboarding-title">Is Your Pharmacy Ready for November 2026?</h2>
+    <div class="onboarding-copy" id="onboarding-description">
+      <p><strong>DSCSA is a U.S. law that helps keep medicine safe.</strong> It asks pharmacies and other partners to track prescription drugs so people can trust what they get.</p>
+      <p><strong>If a pharmacy is not ready by November 27, 2026, it can face serious trouble.</strong> That can include large fines, with some violations reaching up to $250,000, along with business delays and possible enforcement action.</p>
+      <p><strong>This assessment shows where you stand today.</strong> It asks a few simple questions and usually takes about 5 to 10 minutes to complete.</p>
+    </div>
+    <button class="btn onboarding-cta" id="onboarding-start-btn" type="button">Start My Free Assessment</button>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════
      TOP NAVIGATION BAR
@@ -1009,6 +1746,17 @@
     <div class="topbar-actions">
       <button class="btn btn-ghost" onclick="resetAssessment()">⟳ Reset</button>
       <button class="btn btn-ghost" onclick="window.print()">⎙ Export PDF</button>
+      <!-- FEATURE FIVE: Share Results Button -->
+      <button
+        id="share-results-btn"
+        class="share-btn"
+        aria-label="Copy a shareable link to your assessment results"
+        onclick="srHandleShare()"
+        style="display:none;"
+      >
+        <span id="share-btn-label" aria-live="polite">Share My Results</span>
+      </button>
+      <!-- END FEATURE FIVE HTML -->
       <button class="btn btn-primary" onclick="scrollToSummary()">📊 View Score</button>
     </div>
   </div>
@@ -1049,6 +1797,43 @@
     </span>
   </div>
 
+  <!-- EPCIS XML Upload Section -->
+  <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 24px; margin-bottom: 32px;">
+    <h4 style="margin-bottom: 16px; color: var(--text-secondary);">📦 Import EPCIS Events</h4>
+    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 16px;">
+      Upload an EPCIS XML file to extract product identifiers (GTIN, serial, lot, expiry, GLN) from ObjectEvents
+      and automatically populate the assessment criteria.
+    </p>
+    
+    <div id="epcis-drop-area" style="
+      border: 2px dashed var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      background: rgba(59, 130, 246, 0.03);
+    " 
+    onmouseover="this.style.background='rgba(59,130,246,0.08)'"
+    onmouseout="this.style.background='rgba(59,130,246,0.03)'">
+      <input type="file" id="epcis-file-input" accept=".xml" style="display:none;" onchange="handleEPCISFile(event)" />
+      
+      <div style="font-size: 36px; margin-bottom: 12px;">📄</div>
+      <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 6px;">Drop EPCIS XML file here or click to browse</div>
+      <div style="color: var(--text-secondary); font-size: 0.8rem;">
+        Supported: EPCIS 2.0 / CBV 2.0 XML format with ObjectEvent elements
+      </div>
+      
+      <button class="btn btn-primary" style="margin-top: 12px;" onclick="document.getElementById('epcis-file-input').click()">
+        Choose File
+      </button>
+    </div>
+    
+    <div id="epcis-status" style="margin-top: 16px; display: none;">
+      <div id="epcis-message" style="padding: 12px 16px; border-radius: var(--radius-md); font-size: 0.85rem;"></div>
+    </div>
+  </div>
+
   <!-- ── KPI Row ── -->
   <div class="kpi-row">
     <div class="kpi-card kpi-blue">
@@ -1076,27 +1861,43 @@
   <!-- ── Overall Score Panel ── -->
   <div class="score-panel" id="score-panel-anchor">
     <div class="score-gauge-wrap">
-      <div class="score-circle">
-        <svg viewBox="0 0 130 130" width="130" height="130">
-          <circle class="score-circle-track" cx="65" cy="65" r="54" />
-          <circle class="score-circle-fill" id="score-arc"
-                  cx="65" cy="65" r="54"
-                  stroke="url(#scoreGrad)"
-                  stroke-dasharray="339.3"
-                  stroke-dashoffset="339.3" />
-          <defs>
-            <linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%"   stop-color="#3b82f6"/>
-              <stop offset="50%"  stop-color="#8b5cf6"/>
-              <stop offset="100%" stop-color="#06b6d4"/>
-            </linearGradient>
-          </defs>
+      <!-- FEATURE SIX: Circular Progress Gauge (replaces score-display) -->
+      <div class="sr-gauge-wrap" aria-label="Overall compliance score gauge">
+        <svg
+          id="score-arc"
+          class="sr-gauge-svg"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Circular compliance score indicator"
+        >
+          <!-- Background track -->
+          <circle
+            class="sr-gauge-track"
+            cx="100" cy="100" r="80"
+            fill="none"
+            stroke-width="14"
+          />
+          <!-- Foreground progress arc -->
+          <circle
+            id="score-arc-fill"
+            class="sr-gauge-fill"
+            cx="100" cy="100" r="80"
+            fill="none"
+            stroke-width="14"
+            stroke-linecap="round"
+            transform="rotate(-90 100 100)"
+            stroke-dasharray="502.65"
+            stroke-dashoffset="502.65"
+          />
         </svg>
-        <div class="score-circle-label">
-          <span class="score-number" id="score-display">—</span>
-          <span class="score-pct">/ 100</span>
+        <!-- Centered score text inside circle -->
+        <div class="sr-gauge-center" aria-live="polite">
+          <span id="score-display" class="sr-gauge-pct">0%</span>
+          <span class="sr-gauge-label">Overall</span>
         </div>
       </div>
+      <!-- END FEATURE SIX GAUGE -->
       <span class="score-tier-badge tier-medium" id="tier-badge">AWAITING INPUT</span>
     </div>
 
@@ -1113,6 +1914,95 @@
       </div>
     </div>
   </div>
+
+  <!-- FEATURE THREE: Lead Capture & Conversion Layer -->
+  <section id="lead-capture-section" aria-label="Results conversion and consultation booking" style="display:none;">
+    <div class="lc-card">
+      <div class="lc-header">
+        <span class="lc-icon" aria-hidden="true">📋</span>
+        <h2 class="lc-headline" id="lc-dynamic-headline">Your results are ready.</h2>
+        <p class="lc-subhead">Here's what your score means — and what to do next.</p>
+      </div>
+
+      <ul class="lc-value-props" aria-label="What's included in a full SGS-Sentinel remediation audit">
+        <li>
+          <span class="lc-check" aria-hidden="true">✔</span>
+          <span><strong>Weighted Gap Report</strong> — a domain-by-domain breakdown across all six DSCSA milestone areas, identifying exactly where your compliance risk is concentrated.</span>
+        </li>
+        <li>
+          <span class="lc-check" aria-hidden="true">✔</span>
+          <span><strong>Prioritized Action Plan with Timeline</strong> — a sequenced remediation roadmap ranked by regulatory urgency and operational impact, so you know what to fix first.</span>
+        </li>
+        <li>
+          <span class="lc-check" aria-hidden="true">✔</span>
+          <span><strong>Printable FDA-Ready Audit Report</strong> — a formatted compliance summary you can present to trading partners, auditors, or internal leadership.</span>
+        </li>
+      </ul>
+
+      <div class="lc-form" role="form" aria-label="Contact information for results consultation">
+        <div class="lc-field-group">
+          <label for="lc-name" class="lc-label">Full Name <span class="lc-required" aria-label="required">*</span></label>
+          <input
+            type="text"
+            id="lc-name"
+            class="lc-input"
+            placeholder="Your full name"
+            autocomplete="name"
+            aria-required="true"
+            aria-describedby="lc-name-error"
+          />
+          <span id="lc-name-error" class="lc-field-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="lc-field-group">
+          <label for="lc-email" class="lc-label">Email Address <span class="lc-required" aria-label="required">*</span></label>
+          <input
+            type="email"
+            id="lc-email"
+            class="lc-input"
+            placeholder="you@pharmacy.com"
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="lc-email-error"
+          />
+          <span id="lc-email-error" class="lc-field-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="lc-field-group">
+          <label for="lc-phone" class="lc-label">Phone Number <span class="lc-optional">(optional)</span></label>
+          <input
+            type="tel"
+            id="lc-phone"
+            class="lc-input"
+            placeholder="(555) 000-0000"
+            autocomplete="tel"
+            aria-required="false"
+          />
+        </div>
+      </div>
+
+      <div class="lc-cta-group">
+        <button
+          id="lc-cta-primary"
+          class="lc-btn-primary"
+          aria-label="Book a free 15-minute results call via Calendly"
+          onclick="lcHandlePrimaryClick()"
+        >
+          Book My Free 15-Minute Results Call
+        </button>
+        <a
+          id="lc-cta-secondary"
+          href="#"
+          class="lc-link-secondary"
+          aria-label="Email your assessment results instead"
+          onclick="lcHandleEmailClick(event)"
+        >
+          Email My Results Instead
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- END FEATURE THREE -->
 
   <!-- ── Compliance Timeline ── -->
   <div class="timeline-section">
@@ -1145,6 +2035,27 @@
       </div>
     </div>
   </div>
+
+  <!-- FEATURE FOUR: Progress Persistence Banner -->
+  <div id="progress-resume-banner" role="alert" aria-live="polite" aria-label="Saved assessment progress notification" style="display:none;">
+    <span class="prb-text">You have a saved assessment in progress —</span>
+    <a
+      href="#"
+      id="prb-resume-link"
+      class="prb-link"
+      aria-label="Resume your saved assessment where you left off"
+      onclick="prbResume(event)"
+    >Resume Where You Left Off</a>
+    <span class="prb-divider" aria-hidden="true">·</span>
+    <a
+      href="#"
+      id="prb-reset-link"
+      class="prb-link prb-link-muted"
+      aria-label="Discard saved progress and start the assessment over"
+      onclick="prbStartOver(event)"
+    >Start Over Instead</a>
+  </div>
+  <!-- END FEATURE FOUR HTML -->
 
   <!-- ═══════════════════════════════
        MILESTONE ASSESSMENT SECTIONS
@@ -1267,6 +2178,757 @@
      ═══════════════════════════════════════════════════════ -->
 <script>
 "use strict";
+
+/* ──────────────────────────────────────────────────────────────
+   TOOLTIP SYSTEM
+   ────────────────────────────────────────────────────────────── */
+
+const TOOLTIP_TERMS = {
+  'EPCIS': 'A standardized digital system that tracks every drug package as it moves through the supply chain — think of it as a GPS log for your drug inventory.',
+  'T-STAMP': 'A technology standard that lets pharmacies quickly look up the complete history of any drug batch in the supply chain to verify authenticity.',
+  'CBV': 'A common vocabulary that ensures all trading partners — manufacturers, wholesalers, and pharmacies — use the same terms when describing supply chain events.',
+  'GLN': 'A unique identification number assigned to each physical location (warehouse, pharmacy, factory) so packages are tracked to the right place.',
+  'GTIN': 'A barcode number that uniquely identifies a specific drug product — like a fingerprint for each medication you dispense.',
+  'GS1': 'An international organization that creates the standards for product identification and tracking that DSCSA compliance requires.',
+  'DataMatrix': 'A 2D barcode (square pattern) that can hold much more information than traditional barcodes — essential for storing all required drug identification data.',
+  'serialization': 'The process of assigning a unique serial number to each individual drug package so you can track it from factory to patient.',
+  '2D barcode': 'A square barcode pattern that stores comprehensive drug information including lot number, expiration date, and unique serial number.',
+  'audit trail': 'A complete electronic record of every action taken on a drug package, showing who moved it, when, and where — evidence of compliance.',
+  'attestation': 'A formal written statement or proof that your pharmacy has taken required steps to be DSCSA compliant.',
+  'lot-level': 'Tracking groups of drug packages made in the same production batch, so if one is recalled you can quickly identify all affected units.',
+  'trading partner': 'Any business in your supply chain — manufacturers, wholesalers, pharmacy chains, distributors — that you buy from or sell to.',
+  'saleable returns': 'Unopened, undamaged drug packages that customers returned but are still safe to dispense to other patients.',
+  'VRS': 'A network service that instantly verifies whether returned drugs are legitimate before your pharmacy restocks them for resale.',
+  'EPCIS repository': 'A secure database that stores the complete history of every drug package — where it came from, who handled it, and where it went.',
+  'interoperability': 'The ability of different pharmacy and supply chain computer systems to talk to each other and share drug tracking information seamlessly.',
+  'DSCSA': 'The federal Drug Supply Chain Security Act — the law requiring pharmacies to track drug packages and verify authenticity by November 2026.',
+  '§582': 'The section of the federal law that specifically defines what pharmacies must do to verify and track prescription drug packages.'
+};
+
+let activeTooltipPopup = null;
+let tooltipHideTimer = null;
+
+function createTooltipIcon(term) {
+  const icon = document.createElement('span');
+  icon.className = 'tooltip-icon';
+  icon.textContent = 'i';
+  icon.setAttribute('aria-label', `Information about ${term}`);
+  icon.setAttribute('role', 'button');
+  icon.setAttribute('tabindex', '0');
+  icon.dataset.tooltipTerm = term;
+  
+  icon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showTooltip(icon);
+  });
+
+  icon.addEventListener('mouseenter', () => {
+    if (tooltipHideTimer) {
+      window.clearTimeout(tooltipHideTimer);
+      tooltipHideTimer = null;
+    }
+    showTooltip(icon);
+  });
+
+  icon.addEventListener('mouseleave', () => {
+    if (activeTooltipPopup && !activeTooltipPopup.classList.contains('mobile-active')) {
+      tooltipHideTimer = window.setTimeout(() => {
+        hideTooltip();
+      }, 150);
+    }
+  });
+
+  icon.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showTooltip(icon);
+    }
+  });
+
+  return icon;
+}
+
+function showTooltip(iconEl) {
+  if (activeTooltipPopup) {
+    hideTooltip();
+  }
+
+  const term = iconEl.dataset.tooltipTerm;
+  const definition = TOOLTIP_TERMS[term] || 'No definition available.';
+
+  const popup = document.createElement('div');
+  popup.className = 'tooltip-popup';
+  popup.setAttribute('role', 'tooltip');
+  popup.textContent = definition;
+  popup.setAttribute('aria-label', `${term}: ${definition}`);
+
+  document.body.appendChild(popup);
+
+  const rect = iconEl.getBoundingClientRect();
+  const popupWidth = Math.min(220, window.innerWidth - 32);
+  let left = rect.left + rect.width / 2 - popupWidth / 2;
+  let top = rect.top - 8;
+
+  // Constrain horizontally
+  if (left < 16) left = 16;
+  if (left + popupWidth > window.innerWidth - 16) {
+    left = window.innerWidth - popupWidth - 16;
+  }
+
+  // Constrain vertically
+  if (top < 16) {
+    top = rect.bottom + 8;
+  }
+
+  popup.style.left = left + 'px';
+  popup.style.top = top + 'px';
+
+  popup.addEventListener('mouseenter', () => {
+    if (tooltipHideTimer) {
+      window.clearTimeout(tooltipHideTimer);
+      tooltipHideTimer = null;
+    }
+  });
+
+  popup.addEventListener('mouseleave', () => {
+    tooltipHideTimer = window.setTimeout(() => {
+      hideTooltip();
+    }, 150);
+  });
+
+  window.requestAnimationFrame(() => {
+    popup.classList.add('visible');
+  });
+
+  activeTooltipPopup = popup;
+
+  // Detect if mobile
+  const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isMobile) {
+    popup.classList.add('mobile-active');
+
+    // Close on outside tap
+    const closeOnOutsideClick = (e) => {
+      if (!popup.contains(e.target) && !iconEl.contains(e.target)) {
+        hideTooltip();
+        document.removeEventListener('click', closeOnOutsideClick);
+      }
+    };
+    document.addEventListener('click', closeOnOutsideClick);
+  }
+
+  // Close on ESC
+  const closeOnEsc = (e) => {
+    if (e.key === 'Escape') {
+      hideTooltip();
+      document.removeEventListener('keydown', closeOnEsc);
+    }
+  };
+  document.addEventListener('keydown', closeOnEsc);
+}
+
+function hideTooltip() {
+  if (tooltipHideTimer) {
+    window.clearTimeout(tooltipHideTimer);
+    tooltipHideTimer = null;
+  }
+  if (!activeTooltipPopup) return;
+
+  activeTooltipPopup.classList.remove('visible');
+  window.setTimeout(() => {
+    if (activeTooltipPopup && activeTooltipPopup.parentNode) {
+      activeTooltipPopup.parentNode.removeChild(activeTooltipPopup);
+    }
+    activeTooltipPopup = null;
+  }, 150);
+}
+
+function injectTooltipsIntoQuestions() {
+  const questionElements = document.querySelectorAll('.question-text');
+
+  questionElements.forEach((qEl) => {
+    // Process text nodes in the question
+    const walker = document.createTreeWalker(
+      qEl,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+
+    const nodesToReplace = [];
+    let currentNode;
+    while (currentNode = walker.nextNode()) {
+      nodesToReplace.push(currentNode);
+    }
+
+    nodesToReplace.forEach((textNode) => {
+      const text = textNode.textContent;
+      if (!text) return;
+
+      const fragment = document.createDocumentFragment();
+      let lastIndex = 0;
+
+      // Sort terms by length (longest first) to match longest terms first
+      const sortedTerms = Object.keys(TOOLTIP_TERMS).sort((a, b) => b.length - a.length);
+
+      // Use regex to find term matches (case-insensitive for most, but case-sensitive for §582)
+      const termRegex = new RegExp(`\\b(${sortedTerms.map(t => 
+        t === '§582' ? '§582' : t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      ).join('|')})\\b`, 'g');
+
+      let match;
+      const matches = [];
+      while ((match = termRegex.exec(text)) !== null) {
+        matches.push(match);
+      }
+
+      matches.forEach((match) => {
+        const index = match.index;
+        const term = match[0];
+
+        // Add text before the term
+        if (index > lastIndex) {
+          fragment.appendChild(
+            document.createTextNode(text.substring(lastIndex, index))
+          );
+        }
+
+        // Add icon after the term
+        const termSpan = document.createElement('span');
+        termSpan.className = 'tooltip-container';
+        termSpan.appendChild(document.createTextNode(term));
+
+        const icon = createTooltipIcon(term);
+        termSpan.appendChild(icon);
+
+        fragment.appendChild(termSpan);
+        lastIndex = index + term.length;
+      });
+
+      // Add remaining text
+      if (lastIndex < text.length) {
+        fragment.appendChild(document.createTextNode(text.substring(lastIndex)));
+      }
+
+      if (matches.length > 0) {
+        textNode.parentNode.replaceChild(fragment, textNode);
+      }
+    });
+  });
+}
+
+// ── FEATURE FOUR: Assessment Progress Persistence ─────────────────────
+
+const PRB_KEY = 'sgs_progress';
+let prbDebounceTimer = null;
+
+/**
+ * Save current responses{} state to localStorage, debounced 500ms.
+ * Called every time an answer changes.
+ */
+function prbSave() {
+  clearTimeout(prbDebounceTimer);
+  prbDebounceTimer = setTimeout(function () {
+    try {
+      const snapshot = {
+        responses: Object.assign({}, responses),
+        savedAt: Date.now()
+      };
+      localStorage.setItem(PRB_KEY, JSON.stringify(snapshot));
+    } catch (e) {
+      console.warn('SGS-Sentinel: could not save progress.', e);
+    }
+  }, 500);
+}
+
+/**
+ * Load saved progress from localStorage.
+ * Returns the parsed snapshot object or null.
+ */
+function prbLoad() {
+  try {
+    const raw = localStorage.getItem(PRB_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed.responses !== 'object') return null;
+    return parsed;
+  } catch (e) {
+    console.warn('SGS-Sentinel: could not load saved progress.', e);
+    return null;
+  }
+}
+
+/**
+ * Clear saved progress from localStorage and hide the banner.
+ */
+function prbClear() {
+  try {
+    localStorage.removeItem(PRB_KEY);
+  } catch (e) {
+    console.warn('SGS-Sentinel: could not clear progress.', e);
+  }
+  const banner = document.getElementById('progress-resume-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+/**
+ * On page load: check for saved progress and show the banner if found.
+ * Call this AFTER the onboarding modal check.
+ */
+function prbCheckOnLoad() {
+  const snapshot = prbLoad();
+  if (!snapshot) return;
+  const savedCount = Object.keys(snapshot.responses).length;
+  if (savedCount === 0) return;
+
+  const banner = document.getElementById('progress-resume-banner');
+  if (banner) banner.style.display = 'flex';
+}
+
+/**
+ * Resume handler — restores saved answers into response buttons,
+ * triggers score recalculation, scrolls to first unanswered question.
+ */
+function prbResume(e) {
+  e.preventDefault();
+  const snapshot = prbLoad();
+  if (!snapshot) return;
+
+  // Restore each saved response into the responses object and UI
+  Object.keys(snapshot.responses).forEach(function (qid) {
+    const val = snapshot.responses[qid];
+    responses[qid] = val;
+
+    // Re-activate the correct response button in the DOM
+    const btns = document.querySelectorAll(`[data-qid="${qid}"]`);
+    btns.forEach(function (btn) {
+      btn.classList.remove('selected', 'active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    const targetBtn = document.querySelector(`[data-qid="${qid}"][data-value="${val}"]`);
+    if (targetBtn) {
+      targetBtn.classList.add('selected');
+      targetBtn.setAttribute('aria-pressed', 'true');
+    }
+  });
+
+  // Recalculate scores with restored data
+  if (typeof updateOverallScore === 'function') updateOverallScore();
+  if (typeof renderSections === 'function') renderSections();
+
+  // Hide banner
+  const banner = document.getElementById('progress-resume-banner');
+  if (banner) banner.style.display = 'none';
+
+  // Scroll to first unanswered question
+  prbScrollToFirstUnanswered();
+}
+
+/**
+ * Scrolls to the first question that has no saved answer.
+ */
+function prbScrollToFirstUnanswered() {
+  const allQuestions = document.querySelectorAll('[data-qid]');
+  const seen = new Set();
+  let firstUnanswered = null;
+
+  for (let i = 0; i < allQuestions.length; i++) {
+    const qid = allQuestions[i].getAttribute('data-qid');
+    if (!qid || seen.has(qid)) continue;
+    seen.add(qid);
+    if (!responses[qid]) {
+      firstUnanswered = allQuestions[i];
+      break;
+    }
+  }
+
+  if (firstUnanswered) {
+    firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+/**
+ * "Start Over Instead" handler — clears storage and resets the form.
+ */
+function prbStartOver(e) {
+  e.preventDefault();
+  prbClear();
+
+  // Clear all responses
+  Object.keys(responses).forEach(function (k) { delete responses[k]; });
+
+  // Deselect all response buttons
+  document.querySelectorAll('[data-qid]').forEach(function (btn) {
+    btn.classList.remove('selected', 'active');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+
+  // Reset scores
+  if (typeof updateOverallScore === 'function') updateOverallScore();
+  if (typeof renderSections === 'function') renderSections();
+
+  // Hide lead capture section if visible
+  const lc = document.getElementById('lead-capture-section');
+  if (lc) lc.style.display = 'none';
+
+  // Scroll to top of assessment
+  const grid = document.getElementById('sections-grid');
+  if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── END FEATURE FOUR ──────────────────────────────────────────────────
+
+// ── FEATURE FIVE: Shareable Results URL ──────────────────────────────
+
+const SR_PARAM = 'r';
+let srRevertTimer = null;
+
+/**
+ * Encode result payload to base64 URL parameter.
+ * Payload: { score, tier, epcis, answered, ts }
+ */
+function srEncode(payload) {
+  try {
+    return btoa(JSON.stringify(payload));
+  } catch (e) {
+    console.warn('SGS-Sentinel: could not encode share payload.', e);
+    return null;
+  }
+}
+
+/**
+ * Decode base64 URL parameter back to payload object.
+ * Returns null if invalid or missing.
+ */
+function srDecode(encoded) {
+  try {
+    const str = atob(encoded);
+    const parsed = JSON.parse(str);
+    if (
+      typeof parsed.score === 'undefined' ||
+      typeof parsed.tier === 'undefined'
+    ) return null;
+    return parsed;
+  } catch (e) {
+    console.warn('SGS-Sentinel: could not decode share payload.', e);
+    return null;
+  }
+}
+
+/**
+ * Build the full shareable URL for current results.
+ */
+function srBuildURL() {
+  const score = Math.round(calcOverallScore());
+  const tier = getRiskTier(calcOverallScore());
+
+  // Pull EPCIS score from existing KPI element if available
+  const epcisEl = document.getElementById('kpi-epcis');
+  const epcis = epcisEl ? (parseInt(epcisEl.textContent, 10) || 0) : 0;
+
+  const answered = Object.keys(responses).length;
+
+  const payload = {
+    score: score,
+    tier: tier,
+    epcis: epcis,
+    answered: answered,
+    ts: Date.now()
+  };
+
+  const encoded = srEncode(payload);
+  if (!encoded) return null;
+
+  const url = new URL(window.location.href);
+  url.searchParams.set(SR_PARAM, encoded);
+  // Remove any leftover hash to keep URL clean
+  url.hash = '';
+  return url.toString();
+}
+
+/**
+ * Handle Share button click:
+ * 1. Build shareable URL
+ * 2. Copy to clipboard
+ * 3. Temporarily show "Link Copied" for 2s
+ */
+function srHandleShare() {
+  const shareURL = srBuildURL();
+  if (!shareURL) return;
+
+  const labelEl = document.getElementById('share-btn-label');
+
+  try {
+    navigator.clipboard.writeText(shareURL).then(function () {
+      if (labelEl) labelEl.textContent = 'Link Copied ✓';
+      clearTimeout(srRevertTimer);
+      srRevertTimer = setTimeout(function () {
+        if (labelEl) labelEl.textContent = 'Share My Results';
+      }, 2000);
+    }).catch(function () {
+      srFallbackCopy(shareURL, labelEl);
+    });
+  } catch (e) {
+    srFallbackCopy(shareURL, labelEl);
+  }
+}
+
+/**
+ * Fallback clipboard copy for browsers without clipboard API.
+ */
+function srFallbackCopy(text, labelEl) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (labelEl) labelEl.textContent = 'Link Copied ✓';
+    clearTimeout(srRevertTimer);
+    srRevertTimer = setTimeout(function () {
+      if (labelEl) labelEl.textContent = 'Share My Results';
+    }, 2000);
+  } catch (e) {
+    console.warn('SGS-Sentinel: clipboard copy failed.', e);
+  }
+}
+
+/**
+ * On page load: check for "r" URL parameter.
+ * If valid, render read-only shared results view.
+ */
+function srCheckOnLoad() {
+  try {
+    const url = new URL(window.location.href);
+    const encoded = url.searchParams.get(SR_PARAM);
+    if (!encoded) return;
+
+    const payload = srDecode(encoded);
+    if (!payload) return;
+
+    // Show shared result banner
+    const banner = document.getElementById('shared-result-banner');
+    if (banner) banner.style.display = 'block';
+
+    // Inject shared scores into existing KPI elements
+    const kpiOverall = document.getElementById('kpi-overall');
+    const kpiEpcis = document.getElementById('kpi-epcis');
+    const kpiAnswered = document.getElementById('kpi-answered');
+    const kpiTier = document.getElementById('kpi-tier');
+    const scoreDisplay = document.getElementById('score-display');
+    const tierBadge = document.getElementById('tier-badge');
+
+    if (kpiOverall) kpiOverall.textContent = payload.score + '%';
+    if (kpiEpcis) kpiEpcis.textContent = payload.epcis + '%';
+    if (kpiAnswered) kpiAnswered.textContent = payload.answered;
+    if (kpiTier) kpiTier.textContent = payload.tier;
+    if (scoreDisplay) scoreDisplay.textContent = payload.score + '%';
+    if (tierBadge) tierBadge.textContent = payload.tier;
+
+    // Feature Six: Update gauge for shared result
+    srUpdateGauge(payload.score);
+
+    // Show the score panel
+    const anchor = document.getElementById('score-panel-anchor');
+    if (anchor) anchor.style.display = 'block';
+
+    // Lock assessment questions — overlay to prevent interaction
+    const grid = document.getElementById('sections-grid');
+    if (grid) grid.classList.add('sr-readonly-overlay');
+
+    // Hide progress banner if showing
+    const prbBanner = document.getElementById('progress-resume-banner');
+    if (prbBanner) prbBanner.style.display = 'none';
+
+    // Show shared result timestamp if payload has one
+    srInjectTimestamp(payload.ts);
+
+  } catch (e) {
+    console.warn('SGS-Sentinel: error reading shared result URL.', e);
+  }
+}
+
+/**
+ * Inject a small "Shared on [date]" note into the shared banner.
+ */
+function srInjectTimestamp(ts) {
+  try {
+    if (!ts) return;
+    const date = new Date(ts);
+    const formatted = date.toLocaleDateString(undefined, {
+      year: 'numeric', month: 'short', day: 'numeric'
+    });
+    const textEl = document.querySelector('.srb-text');
+    if (textEl) {
+      textEl.textContent =
+        'You are viewing a shared SGS-Sentinel assessment result — assessed on ' + formatted + '.';
+    }
+  } catch (e) { /* non-critical */ }
+}
+
+/**
+ * "Take My Own Assessment" — strip the r= param and reload fresh.
+ */
+function srClearAndReset() {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete(SR_PARAM);
+    window.history.replaceState({}, '', url.toString());
+  } catch (e) {
+    console.warn('SGS-Sentinel: could not clear share param.', e);
+  }
+  window.location.reload();
+}
+
+/**
+ * Show the share button once assessment is complete.
+ * Call this alongside lcShowIfComplete().
+ */
+function srShowButton() {
+  const btn = document.getElementById('share-results-btn');
+  if (btn) btn.style.display = 'inline-flex';
+}
+
+// ── END FEATURE FIVE ──────────────────────────────────────────────────
+
+// ── FEATURE SIX: Mobile-First Results Dashboard + Gauge ──────────────
+
+const SR_GAUGE_CIRCUMFERENCE = 502.65; // 2 * π * 80
+
+/**
+ * Update the circular SVG gauge to reflect a given score (0–100).
+ * Applies correct color tier and animates the stroke.
+ * Call this from updateOverallScore() alongside score-display updates.
+ */
+function srUpdateGauge(score) {
+  const fill = document.getElementById('score-arc-fill');
+  if (!fill) return;
+
+  const clamped = Math.min(100, Math.max(0, score));
+  const offset = SR_GAUGE_CIRCUMFERENCE - (clamped / 100) * SR_GAUGE_CIRCUMFERENCE;
+
+  fill.style.strokeDashoffset = offset.toFixed(2);
+
+  // Apply color tier class
+  fill.classList.remove('tier-red', 'tier-orange', 'tier-green');
+  if (clamped < 40) {
+    fill.classList.add('tier-red');
+  } else if (clamped < 70) {
+    fill.classList.add('tier-orange');
+  } else {
+    fill.classList.add('tier-green');
+  }
+}
+
+/**
+ * Wrap existing KPI elements in card markup if not already wrapped.
+ * This is idempotent — safe to call multiple times.
+ * Only needed if your existing HTML does not already use .kpi-card wrappers.
+ */
+function srBootstrapKpiCards() {
+  // Map of existing element IDs to their card label text
+  const kpiMap = [
+    { id: 'kpi-overall',  label: 'Overall Score' },
+    { id: 'kpi-epcis',    label: 'EPCIS Interop' },
+    { id: 'kpi-answered', label: 'Questions Answered' },
+    { id: 'kpi-tier',     label: 'Risk Tier' }
+  ];
+
+  kpiMap.forEach(function (item) {
+    const el = document.getElementById(item.id);
+    if (!el) return;
+
+    // Already wrapped — skip
+    if (el.closest('.kpi-card')) return;
+
+    const card = document.createElement('div');
+    card.className = 'kpi-card';
+
+    const lbl = document.createElement('span');
+    lbl.className = 'kpi-card-label';
+    lbl.textContent = item.label;
+
+    el.className = (el.className + ' kpi-card-value').trim();
+
+    el.parentNode.insertBefore(card, el);
+    card.appendChild(lbl);
+    card.appendChild(el);
+  });
+}
+
+/**
+ * Wrap KPI cards in the grid container if not already done.
+ */
+function srBootstrapKpiGrid() {
+  // Find first kpi-card and check if already inside a .kpi-grid
+  const firstCard = document.querySelector('.kpi-card');
+  if (!firstCard) return;
+  if (firstCard.closest('.kpi-grid')) return;
+
+  // Collect all sibling kpi-cards under same parent
+  const parent = firstCard.parentNode;
+  const cards = Array.from(parent.querySelectorAll('.kpi-card'));
+
+  const grid = document.createElement('div');
+  grid.className = 'kpi-grid';
+
+  // Insert grid before first card
+  parent.insertBefore(grid, cards[0]);
+  cards.forEach(function (c) { grid.appendChild(c); });
+}
+
+/**
+ * Bootstrap the score panel layout on page load.
+ * Wraps gauge and KPI grid in flex columns for desktop layout.
+ */
+function srBootstrapPanelLayout() {
+  const anchor = document.getElementById('score-panel-anchor');
+  if (!anchor) return;
+
+  // Already bootstrapped
+  if (anchor.querySelector('.score-panel-inner')) return;
+
+  const gaugeWrap = anchor.querySelector('.sr-gauge-wrap');
+  const kpiParent = document.querySelector('.kpi-grid') ||
+                    document.getElementById('kpi-overall')?.parentNode;
+
+  if (!gaugeWrap || !kpiParent) return;
+
+  const inner = document.createElement('div');
+  inner.className = 'score-panel-inner';
+
+  const gaugeCol = document.createElement('div');
+  gaugeCol.className = 'score-panel-gauge-col';
+
+  const kpiCol = document.createElement('div');
+  kpiCol.className = 'score-panel-kpi-col';
+
+  // Move gauge into gauge column
+  gaugeWrap.parentNode.insertBefore(inner, gaugeWrap);
+  gaugeCol.appendChild(gaugeWrap);
+
+  // Move KPI grid into KPI column
+  kpiCol.appendChild(kpiParent);
+
+  inner.appendChild(gaugeCol);
+  inner.appendChild(kpiCol);
+  anchor.insertBefore(inner, anchor.firstChild);
+}
+
+/**
+ * Full Feature Six init — call once on DOMContentLoaded.
+ */
+function srInitDashboard() {
+  srBootstrapKpiCards();
+  srBootstrapKpiGrid();
+  srBootstrapPanelLayout();
+}
+
+// ── END FEATURE SIX ───────────────────────────────────────────────────
 
 /* ──────────────────────────────────────────────────────────────
    DSCSA ASSESSMENT DATA MODEL
@@ -1825,9 +3487,9 @@ function renderQuestions(m) {
           ${q.hint ? `<div class="question-hint">💡 ${q.hint}</div>` : ''}
         </div>
         <div class="response-group">
-          <button class="response-btn resp-yes"     onclick="respond('${q.id}','yes',this,'${m.id}')">✓ Yes</button>
-          <button class="response-btn resp-partial" onclick="respond('${q.id}','partial',this,'${m.id}')">~ Partial</button>
-          <button class="response-btn resp-no"      onclick="respond('${q.id}','no',this,'${m.id}')">✗ No</button>
+          <button class="response-btn resp-yes" data-response="yes" onclick="respond('${q.id}','yes',this,'${m.id}')">✓ Yes</button>
+          <button class="response-btn resp-partial" data-response="partial" onclick="respond('${q.id}','partial',this,'${m.id}')">~ Partial</button>
+          <button class="response-btn resp-no" data-response="no" onclick="respond('${q.id}','no',this,'${m.id}')">✗ No</button>
         </div>
       </div>
     `;
@@ -1898,6 +3560,7 @@ function respond(questionId, value, btnEl, milestoneId) {
   updateMilestoneScore(milestoneId);
   updateOverallScore();
   updateRemediationVisibility(milestoneId);
+  prbSave();
 }
 
 function updateMilestoneScore(milestoneId) {
@@ -1966,6 +3629,16 @@ function updateOverallScore() {
 
   // Narrative
   document.getElementById('score-narrative').textContent = getScoreNarrative(pct, tier);
+
+  // Feature Six: Update gauge
+  srUpdateGauge(Math.round(pct !== null ? pct : 0));
+
+  // Feature Three: Show lead capture if all questions answered
+  lcShowIfComplete();
+  // Feature Five: Show share button if all questions answered
+  srShowButton();
+  // Feature Four: Save progress
+  prbSave();
 }
 
 function updateRemediationVisibility(milestoneId) {
@@ -2010,6 +3683,100 @@ function renderMilestoneBars() {
   container.innerHTML = html;
 }
 
+// ── FEATURE THREE: Lead Capture & Conversion Layer ────────────────────
+
+/**
+ * Show lead capture section when all 36 questions are answered.
+ * Updates dynamic headline with score and risk tier.
+ */
+function lcShowIfComplete() {
+  const totalQuestions = 36;
+  const answeredCount = Object.keys(responses).length;
+  if (answeredCount < totalQuestions) return;
+
+  const section = document.getElementById('lead-capture-section');
+  if (!section) return;
+  section.style.display = 'block';
+
+  const overall = calcOverallScore();
+  const pct = overall.pct;
+  const tier = getRiskTier(pct);
+
+  const headline = document.getElementById('lc-dynamic-headline');
+  if (headline && pct !== null) {
+    headline.textContent = `Your pharmacy scored ${pct}% and is currently rated ${tier.label} under SGS-Sentinel's DSCSA 2026 framework.`;
+  }
+
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  srShowButton();
+}
+
+/**
+ * Validate name and email fields.
+ * Returns true if valid, false and shows errors if not.
+ */
+function lcValidateForm() {
+  let valid = true;
+
+  const nameEl = document.getElementById('lc-name');
+  const nameErr = document.getElementById('lc-name-error');
+  if (!nameEl.value.trim()) {
+    nameEl.classList.add('lc-input-error');
+    nameErr.textContent = 'Please enter your full name.';
+    valid = false;
+  } else {
+    nameEl.classList.remove('lc-input-error');
+    nameErr.textContent = '';
+  }
+
+  const emailEl = document.getElementById('lc-email');
+  const emailErr = document.getElementById('lc-email-error');
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailEl.value.trim() || !emailRe.test(emailEl.value.trim())) {
+    emailEl.classList.add('lc-input-error');
+    emailErr.textContent = 'Please enter a valid email address.';
+    valid = false;
+  } else {
+    emailEl.classList.remove('lc-input-error');
+    emailErr.textContent = '';
+  }
+
+  return valid;
+}
+
+/**
+ * Primary CTA: validate form then open Calendly booking link
+ */
+function lcHandlePrimaryClick() {
+  if (!lcValidateForm()) return;
+  window.open('https://calendly.com/sui-generis-placeholder', '_blank', 'noopener,noreferrer');
+}
+
+/**
+ * Secondary CTA: validate form then open mailto with pre-populated subject and body
+ */
+function lcHandleEmailClick(e) {
+  e.preventDefault();
+  if (!lcValidateForm()) return;
+
+  const name = document.getElementById('lc-name').value.trim();
+  const overall = calcOverallScore();
+  const score = overall.pct;
+  const tier = getRiskTier(overall);
+
+  const subject = encodeURIComponent(`SGS-Sentinel Results — ${tier.label} — ${score}%`);
+  const body = encodeURIComponent(
+    `Hi,\n\nMy name is ${name}.\n\nHere is my SGS-Sentinel DSCSA 2026 assessment summary:\n` +
+    `  Overall Compliance Score: ${score}%\n` +
+    `  Risk Tier: ${tier.label}\n\n` +
+    `I would like to discuss my results and next steps.\n\nThank you.`
+  );
+
+  window.location.href = `mailto:henry@sui-g3n3ri.me?subject=${subject}&body=${body}`;
+}
+
+// ── END FEATURE THREE ─────────────────────────────────────────────────
+
 function resetAssessment() {
   if (!confirm('Reset all responses? This will clear your entire assessment.')) return;
 
@@ -2038,13 +3805,459 @@ function scrollToSummary() {
   document.getElementById('score-panel-anchor').scrollIntoView({ behavior: 'smooth' });
 }
 
+function syncResponseButtons(questionId, value) {
+  const questionItem = document.getElementById(`qi-${questionId}`);
+  if (!questionItem) return;
+
+  questionItem.querySelectorAll('.response-btn').forEach((button) => {
+    button.classList.toggle('active', button.dataset.response === value);
+  });
+}
+
+function setSuggestedResponse(questionId, value) {
+  if (responses[questionId] !== undefined && responses[questionId] !== null) {
+    return false;
+  }
+
+  responses[questionId] = value;
+  syncResponseButtons(questionId, value);
+  return true;
+}
+
+function getTextByLocalNames(node, localNames) {
+  if (!node) return '';
+
+  for (const localName of localNames) {
+    const namespaced = node.getElementsByTagNameNS('*', localName);
+    if (namespaced && namespaced.length > 0) {
+      const text = (namespaced[0].textContent || '').trim();
+      if (text) return text;
+    }
+
+    const fallback = node.getElementsByTagName(localName);
+    if (fallback && fallback.length > 0) {
+      const text = (fallback[0].textContent || '').trim();
+      if (text) return text;
+    }
+  }
+
+  return '';
+}
+
+function getChildElementByLocalName(node, localName) {
+  if (!node) return null;
+
+  const namespaced = node.getElementsByTagNameNS('*', localName);
+  if (namespaced && namespaced.length > 0) return namespaced[0];
+
+  const fallback = node.getElementsByTagName(localName);
+  return fallback && fallback.length > 0 ? fallback[0] : null;
+}
+
+function collectEventSignals(xmlDoc) {
+  const objectEvents = Array.from(xmlDoc.getElementsByTagNameNS('*', 'ObjectEvent'));
+  const aggregationEvents = Array.from(xmlDoc.getElementsByTagNameNS('*', 'AggregationEvent'));
+  const transactionEvents = Array.from(xmlDoc.getElementsByTagNameNS('*', 'TransactionEvent'));
+  const transformationEvents = Array.from(xmlDoc.getElementsByTagNameNS('*', 'TransformationEvent'));
+  const allEvents = [...objectEvents, ...aggregationEvents, ...transactionEvents, ...transformationEvents];
+
+  const eventSignals = {
+    totalEvents: allEvents.length,
+    objectEvents: objectEvents.length,
+    aggregationEvents: aggregationEvents.length,
+    transactionEvents: transactionEvents.length,
+    transformationEvents: transformationEvents.length,
+    hasEpcis20: false,
+    hasCbv20: false,
+    hasEventTime: false,
+    hasReadPoint: false,
+    hasBizLocation: false,
+    hasGtin: false,
+    hasSerial: false,
+    hasLot: false,
+    hasExpiry: false,
+    hasGln: false,
+    hasCommissioning: false,
+    hasShipping: false,
+    hasReceiving: false,
+    hasAggregation: aggregationEvents.length > 0,
+    hasReturn: false,
+    hasInspecting: false,
+    hasDisposing: false,
+    eventTypes: new Set(),
+    identifiers: {
+      gtin: new Set(),
+      serial: new Set(),
+      lot: new Set(),
+      expiry: new Set(),
+      gln: new Set(),
+    },
+  };
+
+  const rootElement = xmlDoc.documentElement;
+  const serializedXml = rootElement ? new XMLSerializer().serializeToString(xmlDoc) : '';
+  const rootName = rootElement && rootElement.tagName ? rootElement.tagName : '';
+  const namespaceUri = rootElement && rootElement.namespaceURI ? rootElement.namespaceURI : '';
+
+  eventSignals.hasEpcis20 = /epcis/i.test(namespaceUri) || /epcis/i.test(rootName) || /epcis/i.test(serializedXml);
+  eventSignals.hasCbv20 = /urn:epcglobal:cbv:/i.test(serializedXml) || /cbv/i.test(serializedXml);
+
+  for (const event of allEvents) {
+    const eventText = (event.textContent || '').trim();
+    const eventType = event.tagName ? event.tagName.split(':').pop() : '';
+    if (eventType) {
+      eventSignals.eventTypes.add(eventType);
+    }
+
+    const eventTime = getTextByLocalNames(event, ['eventTime']);
+    if (eventTime) eventSignals.hasEventTime = true;
+
+    const bizStep = getTextByLocalNames(event, ['bizStep']).toLowerCase();
+    if (bizStep.includes('commission')) eventSignals.hasCommissioning = true;
+    if (bizStep.includes('ship')) eventSignals.hasShipping = true;
+    if (bizStep.includes('receiv')) eventSignals.hasReceiving = true;
+    if (bizStep.includes('return')) eventSignals.hasReturn = true;
+    if (bizStep.includes('inspect')) eventSignals.hasInspecting = true;
+    if (bizStep.includes('decommission') || bizStep.includes('dispose') || bizStep.includes('delete')) eventSignals.hasDisposing = true;
+
+    const readPoint = getChildElementByLocalName(event, 'readPoint');
+    const bizLocation = getChildElementByLocalName(event, 'bizLocation');
+    const readPointId = getTextByLocalNames(readPoint, ['id']);
+    const bizLocationId = getTextByLocalNames(bizLocation, ['id']);
+    if (readPointId) eventSignals.hasReadPoint = true;
+    if (bizLocationId) eventSignals.hasBizLocation = true;
+
+    const directIdentifiers = [
+      getTextByLocalNames(event, ['gtin']),
+      getTextByLocalNames(event, ['serial']),
+      getTextByLocalNames(event, ['serialNumber']),
+      getTextByLocalNames(event, ['lot']),
+      getTextByLocalNames(event, ['lotNumber']),
+      getTextByLocalNames(event, ['expiry']),
+      getTextByLocalNames(event, ['expiryDate']),
+      getTextByLocalNames(event, ['expirationDate']),
+      getTextByLocalNames(event, ['gln']),
+    ].filter(Boolean);
+
+    if (directIdentifiers.length > 0) {
+      directIdentifiers.forEach((value) => {
+        if (/^\d{14}$/.test(value)) eventSignals.identifiers.gtin.add(value);
+        if (/^\d{13}$/.test(value) || /urn:epc:id:sgln:/i.test(value) || /id\.gs1\.org\/414\//i.test(value)) {
+          eventSignals.identifiers.gln.add(value);
+          eventSignals.hasGln = true;
+        }
+        if (/^\d{6}$/.test(value)) eventSignals.identifiers.expiry.add(value);
+        if (/^\d+$/.test(value) && value.length >= 6 && value.length <= 32 && !/^\d{6}$/.test(value)) eventSignals.identifiers.serial.add(value);
+      });
+    }
+
+    const digitalLinkMatches = Array.from(eventText.matchAll(/https?:\/\/id\.gs1\.org\/01\/(?<gtin>\d{14})(?:\/21\/(?<serial>[^\/?#\s]+))?(?:\/10\/(?<lot>[^\/?#\s]+))?(?:\/17\/(?<expiry>\d{6}))?/gi));
+    digitalLinkMatches.forEach((match) => {
+      const groups = match.groups || {};
+      if (groups.gtin) {
+        eventSignals.hasGtin = true;
+        eventSignals.identifiers.gtin.add(groups.gtin);
+      }
+      if (groups.serial) {
+        eventSignals.hasSerial = true;
+        eventSignals.identifiers.serial.add(groups.serial);
+      }
+      if (groups.lot) {
+        eventSignals.hasLot = true;
+        eventSignals.identifiers.lot.add(groups.lot);
+      }
+      if (groups.expiry) {
+        eventSignals.hasExpiry = true;
+        eventSignals.identifiers.expiry.add(groups.expiry);
+      }
+    });
+
+    if (/\bgtin\b/i.test(eventText)) eventSignals.hasGtin = true;
+    if (/\bserial\b/i.test(eventText) || /\bser\b/i.test(eventText)) eventSignals.hasSerial = true;
+    if (/\blot\b/i.test(eventText)) eventSignals.hasLot = true;
+    if (/\b(expiry|expiration)\b/i.test(eventText)) eventSignals.hasExpiry = true;
+    if (/\bgln\b/i.test(eventText) || /urn:epc:id:sgln:/i.test(eventText)) eventSignals.hasGln = true;
+  }
+
+  eventSignals.hasGtin = eventSignals.hasGtin || eventSignals.identifiers.gtin.size > 0;
+  eventSignals.hasSerial = eventSignals.hasSerial || eventSignals.identifiers.serial.size > 0;
+  eventSignals.hasLot = eventSignals.hasLot || eventSignals.identifiers.lot.size > 0;
+  eventSignals.hasExpiry = eventSignals.hasExpiry || eventSignals.identifiers.expiry.size > 0;
+  eventSignals.hasGln = eventSignals.hasGln || eventSignals.identifiers.gln.size > 0;
+
+  return eventSignals;
+}
+
+function buildEpcisSuggestions(signals) {
+  const suggestions = [];
+
+  if (signals.hasEpcis20 && signals.hasCbv20) {
+    suggestions.push({ questionId: 'M5-Q1', value: 'yes' });
+    suggestions.push({ questionId: 'M5-Q5', value: 'yes' });
+  } else if (signals.hasEpcis20) {
+    suggestions.push({ questionId: 'M5-Q1', value: 'partial' });
+  }
+
+  if (signals.hasGtin && signals.hasSerial && signals.hasLot && signals.hasExpiry) {
+    suggestions.push({ questionId: 'M2-Q1', value: 'yes' });
+  } else if (signals.hasGtin || signals.hasSerial || signals.hasLot || signals.hasExpiry) {
+    suggestions.push({ questionId: 'M2-Q1', value: 'partial' });
+  }
+
+  if (signals.hasReadPoint && signals.hasBizLocation) {
+    suggestions.push({ questionId: 'M1-Q2', value: 'yes' });
+  } else if (signals.hasReadPoint || signals.hasBizLocation) {
+    suggestions.push({ questionId: 'M1-Q2', value: 'partial' });
+  }
+
+  if (signals.hasCommissioning || signals.hasShipping || signals.hasReceiving || signals.hasAggregation) {
+    suggestions.push({ questionId: 'M3-Q1', value: signals.hasCommissioning && signals.hasShipping && signals.hasReceiving && signals.hasAggregation ? 'yes' : 'partial' });
+  }
+
+  if (signals.hasAggregation) {
+    suggestions.push({ questionId: 'M3-Q2', value: 'yes' });
+  }
+
+  if (signals.totalEvents > 0 && signals.hasEventTime) {
+    suggestions.push({ questionId: 'M3-Q4', value: 'yes' });
+  }
+
+  if (signals.hasReturn) {
+    suggestions.push({ questionId: 'M4-Q3', value: 'yes' });
+  }
+
+  return suggestions;
+}
+
+function setEpcisStatus(message, kind = 'info') {
+  const status = document.getElementById('epcis-status');
+  const messageEl = document.getElementById('epcis-message');
+
+  if (!status || !messageEl) return;
+
+  const palette = {
+    info: {
+      background: 'rgba(59, 130, 246, 0.08)',
+      border: '1px solid rgba(59, 130, 246, 0.22)',
+      color: '#bfdbfe',
+    },
+    success: {
+      background: 'rgba(34, 197, 94, 0.08)',
+      border: '1px solid rgba(34, 197, 94, 0.22)',
+      color: '#bbf7d0',
+    },
+    warning: {
+      background: 'rgba(245, 158, 11, 0.08)',
+      border: '1px solid rgba(245, 158, 11, 0.22)',
+      color: '#fde68a',
+    },
+    error: {
+      background: 'rgba(239, 68, 68, 0.08)',
+      border: '1px solid rgba(239, 68, 68, 0.22)',
+      color: '#fecaca',
+    },
+  };
+
+  const styles = palette[kind] || palette.info;
+  status.style.display = 'block';
+  messageEl.style.background = styles.background;
+  messageEl.style.border = styles.border;
+  messageEl.style.color = styles.color;
+  messageEl.textContent = message;
+}
+
+function refreshAssessmentUi() {
+  MILESTONES.forEach((milestone) => updateMilestoneScore(milestone.id));
+  updateOverallScore();
+  renderMilestoneBars();
+}
+
+function handleEpcisFileSelection(file) {
+  if (!file) return;
+
+  setEpcisStatus(`Reading ${file.name}...`, 'info');
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const xmlText = String(reader.result || '');
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+      const parserError = xmlDoc.getElementsByTagName('parsererror')[0];
+
+      if (parserError) {
+        throw new Error('The file could not be parsed as valid EPCIS XML.');
+      }
+
+      const signals = collectEventSignals(xmlDoc);
+      const suggestions = buildEpcisSuggestions(signals);
+      const appliedMilestones = new Set();
+
+      suggestions.forEach(({ questionId, value }) => {
+        if (setSuggestedResponse(questionId, value)) {
+          appliedMilestones.add(questionId.split('-')[0]);
+        }
+      });
+
+      refreshAssessmentUi();
+
+      const identifierSummary = [];
+      if (signals.hasGtin) identifierSummary.push('GTIN');
+      if (signals.hasSerial) identifierSummary.push('serial');
+      if (signals.hasLot) identifierSummary.push('lot');
+      if (signals.hasExpiry) identifierSummary.push('expiry');
+      if (signals.hasGln) identifierSummary.push('GLN');
+
+      const summaryBits = [
+        `${signals.totalEvents} event${signals.totalEvents === 1 ? '' : 's'} found`,
+        identifierSummary.length > 0 ? `detected ${identifierSummary.join(', ')}` : 'no product identifiers detected',
+        appliedMilestones.size > 0 ? `prefilled ${appliedMilestones.size} section${appliedMilestones.size === 1 ? '' : 's'}` : 'no unanswered criteria were updated',
+      ];
+
+      setEpcisStatus(`Imported ${summaryBits.join(' • ')}. Review the prefilled responses before final scoring.`, 'success');
+    } catch (error) {
+      setEpcisStatus(error instanceof Error ? error.message : 'Unable to read the EPCIS file.', 'error');
+    }
+  };
+
+  reader.onerror = () => {
+    setEpcisStatus('Unable to read the EPCIS file.', 'error');
+  };
+
+  reader.readAsText(file);
+}
+
+function handleEPCISFile(event) {
+  const file = event && event.target && event.target.files ? event.target.files[0] : null;
+  handleEpcisFileSelection(file);
+
+  if (event && event.target) {
+    event.target.value = '';
+  }
+}
+
+function initializeEpcisImportControls() {
+  const dropArea = document.getElementById('epcis-drop-area');
+  const fileInput = document.getElementById('epcis-file-input');
+
+  if (!dropArea || !fileInput) return;
+
+  dropArea.addEventListener('click', (event) => {
+    if (event.target === dropArea) {
+      fileInput.click();
+    }
+  });
+
+  dropArea.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropArea.style.borderColor = 'var(--accent-cyan)';
+    dropArea.style.background = 'rgba(6, 182, 212, 0.08)';
+  });
+
+  dropArea.addEventListener('dragleave', () => {
+    dropArea.style.borderColor = 'var(--border-accent)';
+    dropArea.style.background = 'rgba(59, 130, 246, 0.03)';
+  });
+
+  dropArea.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropArea.style.borderColor = 'var(--border-accent)';
+    dropArea.style.background = 'rgba(59, 130, 246, 0.03)';
+
+    const file = event.dataTransfer && event.dataTransfer.files ? event.dataTransfer.files[0] : null;
+    if (file) {
+      handleEpcisFileSelection(file);
+    }
+  });
+}
+
+/* ──────────────────────────────────────────────────────────────
+   ONBOARDING MODAL
+   ────────────────────────────────────────────────────────────── */
+
+const ONBOARDING_KEY = 'sgs_onboarded';
+let onboardingRestoreFocus = null;
+
+function closeOnboardingModal() {
+  const overlay = document.getElementById('onboarding-overlay');
+  if (!overlay || overlay.classList.contains('closing')) return;
+
+  overlay.classList.add('closing');
+  overlay.classList.remove('open');
+  document.body.classList.remove('modal-open');
+  window.removeEventListener('keydown', handleOnboardingKeydown);
+
+  const focusTarget = onboardingRestoreFocus;
+  onboardingRestoreFocus = null;
+
+  window.setTimeout(() => {
+    overlay.hidden = true;
+    overlay.classList.remove('closing');
+    if (focusTarget && typeof focusTarget.focus === 'function') {
+      focusTarget.focus();
+    }
+  }, 220);
+}
+
+function handleOnboardingKeydown(event) {
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    closeOnboardingModal();
+  }
+}
+
+function openOnboardingModal() {
+  const overlay = document.getElementById('onboarding-overlay');
+  const startButton = document.getElementById('onboarding-start-btn');
+  if (!overlay || !startButton) return;
+
+  overlay.hidden = false;
+  window.requestAnimationFrame(() => {
+    overlay.classList.add('open');
+    document.body.classList.add('modal-open');
+    onboardingRestoreFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    startButton.focus();
+  });
+
+  window.addEventListener('keydown', handleOnboardingKeydown);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      closeOnboardingModal();
+    }
+  }, { once: true });
+
+  startButton.addEventListener('click', () => {
+    try {
+      localStorage.setItem(ONBOARDING_KEY, 'true');
+    } catch (e) {
+      console.warn('Could not persist onboarding state (private browsing mode or storage full):', e);
+    }
+    closeOnboardingModal();
+  }, { once: true });
+}
+
 /* ──────────────────────────────────────────────────────────────
    INIT
    ────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   renderSections();
+  injectTooltipsIntoQuestions();
+  initializeEpcisImportControls();
   updateOverallScore();
   renderMilestoneBars();
+
+  try {
+    if (localStorage.getItem(ONBOARDING_KEY) !== 'true') {
+      openOnboardingModal();
+    }
+  } catch (e) {
+    // Private browsing mode: localStorage unavailable, show modal anyway
+    openOnboardingModal();
+  }
+  
+  prbCheckOnLoad();
+  srCheckOnLoad();
+  srInitDashboard();
 });
 </script>
 </body>
