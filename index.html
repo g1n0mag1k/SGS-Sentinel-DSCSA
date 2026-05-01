@@ -3,125 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SGS-Sentinel | DSCSA 2026 Readiness Assessment</title>
+  <title>SGS-Sentinel | DSCSA 2026 Readiness</title>
   <style>
     /* =========================================================
-       SGS-Sentinel — Sui-Generis Enterprise Dashboard Theme
+       SGS-Sentinel - Sui-Generis Enterprise
        ========================================================= */
     :root {
-      --bg-base:        #0a0e1a;
-      --bg-surface:     #0f1629;
-      --bg-card:        #141d35;
-      --bg-card-hover:  #1a2545;
-      --border-subtle:  #1e2d50;
-      --border-accent:  #2a3f70;
-      --text-primary:   #e8edf8;
+      --bg-base: #0a0e1a;
+      --bg-surface: #0f1629;
+      --bg-card: #141d35;
+      --bg-card-hover: #1a2545;
+      --border-subtle: #1e2d50;
+      --border-accent: #2a3f70;
+      --text-primary: #e8edf8;
       --text-secondary: #8fa3c9;
-      --text-muted:     #4a5f85;
-      --accent-blue:    #3b82f6;
-      --accent-cyan:    #06b6d4;
-      --accent-purple:  #8b5cf6;
-      --accent-amber:   #f59e0b;
-      --risk-critical:  #ef4444;
-      --risk-high:      #f97316;
-      --risk-medium:    #eab308;
-      --risk-low:       #22c55e;
-      --risk-minimal:   #06b6d4;
-      --score-bar-bg:   #1a2545;
-      --glow-blue:      0 0 20px rgba(59, 130, 246, 0.25);
+      --text-muted: #4a5f85;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #8b5cf6;
+      --accent-amber: #f59e0b;
+      --risk-critical: #ef4444;
+      --risk-high: #f97316;
+      --risk-medium: #eab308;
+      --risk-low: #22c55e;
+      --score-bar-bg: #1a2545;
+      --glow-blue: 0 0 20px rgba(59, 130, 246, 0.5);
       --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
       --radius-sm: 4px;
       --radius-md: 8px;
       --radius-lg: 12px;
-      --radius-xl: 16px;
       --transition: all 0.2s ease;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { background-color: var(--bg-base); color: var(--text-primary); font-family: var(--font-sans); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+    body { background-color: var(--bg-base); font-family: var(--font-sans); color: var(--text-primary); margin: 0; padding: 0; }
     
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 10px; }
 
-    h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
-    h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-    h3 { font-size: 0.95rem; font-weight: 600; }
-    
-    a { color: var(--accent-cyan); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    
-    .app-wrapper { max-width: 1280px; margin: 0 auto; padding: 0 24px 80px; }
-    
-    .topbar { background: rgba(10, 14, 26, 0.95); border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
-    .topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; }
-    .brand-logo { display: flex; align-items: center; gap: 10px; }
-    .brand-icon { width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; box-shadow: var(--glow-blue); }
-    .brand-name { font-size: 1rem; font-weight: 800; background: linear-gradient(90deg, #e8edf8 0%, #8b9fc9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    h1 { font-size: 1.6rem; font-weight: 700; margin: 0 0 8px 0; }
+    h2 { font-size: 1.15rem; font-weight: 700; margin: 0 0 4px 0; }
+    h3 { font-size: 0.95rem; font-weight: 600; margin: 0; }
+
+    .app-wrapper { max-width: 1280px; margin: 0 auto; padding: 20px; }
+
+    .topbar { background: rgba(10, 14, 26, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; z-index: 100; }
+    .topbar-inner { max-width: 1280px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 16px; }
+    .brand-logo { display: flex; align-items: center; gap: 12px; }
+    .brand-icon { width: 36px; height: 36px; background: var(--accent-blue); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
+    .brand-name { font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; }
     .topbar-spacer { flex: 1; }
     .topbar-actions { display: flex; gap: 8px; }
 
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: var(--radius-md); font-size: 0.8rem; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); }
-    .btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-subtle); }
-    .btn-ghost:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-accent); }
-    .btn-primary { background: var(--accent-blue); color: #fff; box-shadow: 0 0 16px rgba(59, 130, 246, 0.35); }
-    .btn-primary:hover { background: #2563eb; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); }
+    .btn-ghost { background: transparent; color: var(--text-secondary); }
+    .btn-ghost:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+    .btn-primary { background: var(--accent-blue); color: #fff; }
+    .btn-primary:hover { background: #2563eb; box-shadow: var(--glow-blue); }
 
     .page-header { padding: 40px 0 32px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 32px; }
-    
-    .score-panel { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 28px 32px; margin-bottom: 32px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; position: relative; }
-    .score-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-purple) 50%, var(--accent-cyan) 100%); }
-    .score-gauge-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .score-circle { width: 130px; height: 130px; position: relative; }
-    .score-circle svg { transform: rotate(-90deg); }
+
+    .score-panel { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px; display: flex; align-items: center; gap: 40px; margin-bottom: 32px; position: relative; overflow: hidden; }
+    .score-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple)); }
+    .score-gauge-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+    .score-circle { width: 130px; height: 130px; }
+    .score-circle svg { transform: rotate(-90deg); width: 100%; height: 100%; }
     .score-circle-track { fill: none; stroke: var(--score-bar-bg); stroke-width: 8; }
-    .score-circle-fill { fill: none; stroke: var(--accent-cyan); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease; stroke-dasharray: 360; stroke-dashoffset: 360; }
-    .score-circle-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .score-number { font-size: 1.9rem; font-weight: 800; }
-    
+    .score-circle-fill { fill: none; stroke: var(--accent-blue); stroke-width: 8; stroke-dasharray: 358; stroke-dashoffset: 358; transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1); stroke-linecap: round; }
+    .score-circle-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .score-number { font-size: 1.9rem; font-weight: 700; line-height: 1; }
+
     .score-summary { flex: 1; min-width: 260px; }
-    .score-tier-badge { font-size: 0.72rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; }
+    .score-tier-badge { font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; display: inline-block; margin-top: 12px; background: var(--bg-surface); color: var(--text-muted); border: 1px solid var(--border-subtle); text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .assessment-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); margin-bottom: 16px; overflow: hidden; }
-    .card-header { padding: 18px 24px; display: flex; align-items: center; gap: 16px; cursor: pointer; border-bottom: 1px solid var(--border-subtle); }
-    .card-header:hover { background: var(--bg-card-hover); }
-    .card-milestone-badge { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-weight: 800; background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
-    .card-title-block { flex: 1; }
-    .card-body { display: none; padding: 0 24px 24px; }
-    .card-body.open { display: block; }
-
-    .question-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; gap: 16px; margin-top: 10px; }
-    .response-group { display: flex; gap: 4px; }
-    .response-btn { padding: 5px 12px; border-radius: var(--radius-sm); font-size: 0.72rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; background: rgba(255,255,255,0.05); color: var(--text-secondary); }
-    .response-btn.active.resp-yes { background: rgba(34,197,94,0.2); color: #4ade80; border-color: rgba(34,197,94,0.5); }
-    .response-btn.active.resp-no { background: rgba(239,68,68,0.2); color: #f87171; border-color: rgba(239,68,68,0.5); }
+    .assessment-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); margin-bottom: 16px; overflow: hidden; transition: var(--transition); }
     
-    /* Modals & Lead Capture */
-    .onboarding-overlay { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); }
-    .onboarding-modal { width: min(600px, 92vw); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 24px; }
-    body.modal-open { overflow: hidden; }
-    
-    .lc-panel { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 24px; margin-top: 32px; display: none; }
-    .lc-form { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
-    .lc-field input { background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 10px; color: var(--text-primary); width: 100%; outline: none; }
-    
-    /* Tooltips */
-    .sgs-tooltip { border-bottom: 1px dashed var(--accent-cyan); cursor: help; position: relative; color: var(--accent-cyan); }
-    .sgs-tooltip:hover::after { content: attr(data-tip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--bg-base); padding: 5px 10px; border: 1px solid var(--border-accent); border-radius: 4px; font-size: 0.75rem; white-space: nowrap; z-index: 10; color: #fff; margin-bottom: 5px;}
+    .lc-form { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 20px; }
+    .lc-field input { background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); color: #fff; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.9rem; outline: none; width: 100%; font-family: var(--font-sans); }
   </style>
 </head>
 <body>
 
-  <div id="onboarding-overlay" class="onboarding-overlay">
-    <div class="onboarding-modal">
+  <div id="onboarding-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,14,26,0.9); z-index:999; justify-content:center; align-items:center; padding:20px;">
+    <div style="background:var(--bg-card); padding:40px; border-radius:var(--radius-lg); border:1px solid var(--border-subtle); max-width:600px; width:100%;">
       <h2>SGS-Sentinel: DSCSA 2026 Readiness</h2>
-      <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9rem;">
-        Welcome to the Sui-Generis LLC evaluation framework. This tool utilizes a weighted compliance algorithm mapped directly to FDA §582 mandates and GS1 EPCIS standards to evaluate your interoperability posture.
-      </p>
-      <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-        <button class="btn btn-primary" onclick="dismissOnboarding()">Acknowledge & Begin</button>
+      <p style="margin-top: 10px; color: var(--text-secondary); line-height:1.6;">Welcome to the Sui-Generis LLC evaluation framework. This assessment validates interoperable compliance with the FDA Drug Supply Chain Security Act mandates.</p>
+      <div style="display: flex; justify-content: flex-end; margin-top:24px;">
+        <button class="btn btn-primary" onclick="dismissOnboarding()">Begin Assessment</button>
       </div>
     </div>
   </div>
@@ -145,81 +115,99 @@
   <main class="app-wrapper">
     <div class="page-header">
       <h1>DSCSA 2026 Interoperability Assessment</h1>
-      <p style="color: var(--text-secondary);">Framework v2.1 • Sui-Generis LLC</p>
+      <p style="color: var(--text-secondary); font-size:0.9rem;">Framework v2.1 &bull; Sui-Generis LLC</p>
     </div>
 
     <div class="score-panel">
       <div class="score-gauge-wrap">
         <div class="score-circle">
-          <svg width="130" height="130">
+          <svg>
             <circle class="score-circle-track" cx="65" cy="65" r="57"></circle>
             <circle id="gauge-fill" class="score-circle-fill" cx="65" cy="65" r="57"></circle>
           </svg>
-          <div class="score-circle-label">
-            <span id="score-val" class="score-number">0</span>
-            <span class="score-pct">%</span>
-          </div>
         </div>
-        <span id="risk-tier" class="score-tier-badge" style="background: rgba(255,255,255,0.1); color: #fff;">PENDING</span>
+        <div class="score-circle-label">
+          <div class="score-number"><span id="score-val">0</span><span style="font-size:1rem;">%</span></div>
+        </div>
+        <div id="tier-badge" class="score-tier-badge">PENDING</div>
       </div>
       <div class="score-summary">
-        <h2>Compliance Score Summary</h2>
-        <p>Complete the milestones below. The weighted scoring engine prioritizes EPCIS 1.2+ interoperability per FDA guidance.</p>
-        <div id="progress-text" style="font-weight: bold; font-family: var(--font-mono); color: var(--accent-cyan);">0/6 Milestones Evaluated</div>
+        <h3 style="color:#fff; margin-bottom:8px;">Compliance Score Summary</h3>
+        <p style="color:var(--text-secondary); font-size:0.85rem; line-height:1.5; margin:0 0 12px 0;">Complete the milestones below. The weighted scoring engine prioritizes EPCIS 1.2+ interoperability per FDA guidance.</p>
+        <div id="progress-text" style="color:var(--accent-cyan); font-weight:600; font-size:0.85rem;">0/36 Evaluated</div>
       </div>
     </div>
 
-    <div id="assessment-container" class="sections-grid"></div>
-
-    <div id="lc-panel" class="lc-panel">
-      <h3>Assessment Complete. Secure Your Remediation Plan.</h3>
-      <p>Your results indicate areas requiring technical alignment before Nov 2026. Schedule a confidential architectural review with Sui-Generis LLC to map your remediation pathway.</p>
-      <div class="lc-form">
-        <div class="lc-field">
-          <label>Company Email</label>
-          <input type="email" id="lc-email" placeholder="engineer@pharmacy.com">
+    <div id="assessment-container"></div>
+    
+    <div id="lc-panel" style="display:none; background:var(--bg-card); padding:32px; border-radius:var(--radius-lg); border:1px solid var(--border-accent); margin-top:32px; text-align:center;">
+        <h2>Comprehensive Vulnerability Report Ready</h2>
+        <p style="color:var(--text-secondary); margin-top:8px;">Enter your email to receive your detailed gap analysis and remediation roadmap.</p>
+        <div class="lc-form" style="max-width:400px; margin:20px auto;">
+            <div class="lc-field"><input type="email" id="lc-email" placeholder="Work Email Address" /></div>
+            <button class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;" onclick="lcHandlePrimaryClick()">Unlock Full Report</button>
         </div>
-        <div class="lc-field">
-          <label>Company Name</label>
-          <input type="text" id="lc-company" placeholder="e.g., Apex Distributors">
-        </div>
-        <button class="btn btn-primary" style="margin-top: 10px; width: fit-content;" onclick="lcHandlePrimaryClick()">Book Strategy Session</button>
-      </div>
     </div>
   </main>
 
   <script>
     /* =========================================================
-       SGS-Sentinel — Assessment Logic & Persistence Engine
+       SGS-Sentinel - Assessment Logic & Personalization
        ========================================================= */
 
-    // Milestone Definitions & Weights based on README / Framework
     const milestones = [
-      { id: 'M1', title: 'Package-Level Serialization', stat: '§582(b)(1)', weight: 0.25, questions: [
+      { id: 'M1', title: 'Package-Level Serialization', weight: 25, questions: [
         { id: 'q1_1', text: 'Are all outbound physical units commissioned with a standard 2D DataMatrix (GTIN, SN, Lot, Exp)?' },
-        { id: 'q1_2', text: 'Does your edge infrastructure support sub-second optical decoding without read degradation?' }
+        { id: 'q1_2', text: 'Does your edge infrastructure support sub-second optical decoding without read degradation?' },
+        { id: 'q1_3', text: 'Is your master data repository synchronized to automatically assign and manage randomized Serial Numbers?' },
+        { id: 'q1_4', text: 'Can the system dynamically detect and flag duplicate or malformed serial number formats at the edge?' },
+        { id: 'q1_5', text: 'Do serialization workflows maintain full ALCOA+ data integrity from commissioning through decommissioning?' },
+        { id: 'q1_6', text: 'Have you verified that secondary packaging clearly incorporates human-readable interpretation (HRI) aligned with the DataMatrix?' }
       ]},
-      { id: 'M2', title: 'EPCIS Data Exchange', stat: 'GS1 EPCIS 2.0', weight: 0.20, questions: [
-        { id: 'q2_1', text: `Can your systems parse inbound <span class="sgs-tooltip" data-tip="Electronic Product Code Information Services">EPCIS</span> events in real-time?` },
-        { id: 'q2_2', text: `Are you securely managing partner <span class="sgs-tooltip" data-tip="Global Location Number">GLNs</span> within a trusted repository?` }
+      { id: 'M2', title: 'EPCIS Data Exchange', weight: 20, questions: [
+        { id: 'q2_1', text: 'Can your systems parse inbound EPCIS events in real-time?' },
+        { id: 'q2_2', text: 'Are you securely managing partner GLNs within a trusted repository?' },
+        { id: 'q2_3', text: 'Does your system natively support EPCIS 1.2+ message choreography and CBV 1.2 standard vocabularies?' },
+        { id: 'q2_4', text: 'Are exceptions, such as missing TI/TS data in inbound EPCIS files, automatically triaged for administrative review?' },
+        { id: 'q2_5', text: 'Is your architecture capable of handling asynchronous AS2 or RESTful API payloads from upstream trading partners?' },
+        { id: 'q2_6', text: 'Do you enforce automated credential rotation and TLS 1.3 encryption for all B2B EPCIS data in transit?' }
       ]},
-      { id: 'M3', title: 'VRS Connectivity', stat: '§582(e)(4)', weight: 0.20, questions: [
-        { id: 'q3_1', text: `Is your <span class="sgs-tooltip" data-tip="Verification Router Service">VRS</span> integration fully operational for saleable returns?` }
+      { id: 'M3', title: 'VRS Connectivity', weight: 20, questions: [
+        { id: 'q3_1', text: 'Is your VRS integration fully operational for saleable returns?' },
+        { id: 'q3_2', text: 'Are sub-second PI verification responses (under 300ms) consistently achieved via the Verification Router Service?' },
+        { id: 'q3_3', text: 'Does the system securely process verification requests initiated by downstream dispensers and wholesalers?' },
+        { id: 'q3_4', text: 'Are verification audit trails inherently immutable and cryptographically bound to the user session?' },
+        { id: 'q3_5', text: 'Does the application fallback gracefully if a manufacturer’s primary VRS node becomes unreachable?' },
+        { id: 'q3_6', text: 'Are false-negative verifications automatically cross-referenced with your internal EPCIS repository before quarantine?' }
       ]},
-      { id: 'M4', title: 'T3 Data Retention', stat: '21 CFR 211.68', weight: 0.15, questions: [
-        { id: 'q4_1', text: 'Are all Transaction Information, History, and Statements retained securely for a strict 6-year period?' }
+      { id: 'M4', title: 'T3 Data Retention', weight: 15, questions: [
+        { id: 'q4_1', text: 'Are all Transaction Information, History, and Statements retained securely for a strict 6-year period?' },
+        { id: 'q4_2', text: 'Is your database architecture compliant with FDA 21 CFR Part 11 requirements for electronic records?' },
+        { id: 'q4_3', text: 'Can authorized users query and retrieve complete T3 documentation within 24 hours of an FDA or state regulatory request?' },
+        { id: 'q4_4', text: 'Are automated backup and disaster recovery protocols actively tested for the T3 persistence layer?' },
+        { id: 'q4_5', text: 'Does the system enforce role-based access control (RBAC) to prevent unauthorized deletion of historic TI/TS?' },
+        { id: 'q4_6', text: 'Are data retention policies programmatically automated to purge records cleanly only after the 6-year mandate expires?' }
       ]},
-      { id: 'M5', title: 'Aggregation Capability', stat: '§582(c)(4)', weight: 0.10, questions: [
-        { id: 'q5_1', text: 'Can you accurately infer child serialization from pallet/case SSCCs?' }
+      { id: 'M5', title: 'Aggregation Capability', weight: 10, questions: [
+        { id: 'q5_1', text: 'Can you accurately infer child serialization from pallet/case SSCCs?' },
+        { id: 'q5_2', text: 'Does your system reliably capture and record aggregation events (ObjectEvent/AggregationEvent) during packing operations?' },
+        { id: 'q5_3', text: 'Are partial disaggregations (e.g., breaking a case for an order) accurately reflected in the updated EPCIS event stream?' },
+        { id: 'q5_4', text: 'Is the warehouse management system (WMS) tightly coupled with the serial repository for pick-and-pack edge execution?' },
+        { id: 'q5_5', text: 'Do you have software logic to handle "orphan" items that have become physically separated from their parent container?' },
+        { id: 'q5_6', text: 'Are SSCC barcode labels printed at required quality standards and validated inline before palletization?' }
       ]},
-      { id: 'M6', title: 'Exception Handling', stat: '§582(h)', weight: 0.10, questions: [
-        { id: 'q6_1', text: 'Is an automated workflow deployed to quarantine suspect product within 24 hours of flag?' }
+      { id: 'M6', title: 'Exception Handling', weight: 10, questions: [
+        { id: 'q6_1', text: 'Is an automated workflow deployed to quarantine suspect product within 24 hours of flag?' },
+        { id: 'q6_2', text: 'Does your system trigger FDA Form 3911 submission processes for confirmed illegitimate products?' },
+        { id: 'q6_3', text: 'Are trading partners instantly notified via automated alert when a shared product is placed under investigation?' },
+        { id: 'q6_4', text: 'Do physical quarantine zones have corresponding digital holds in the ERP to prevent accidental dispensing?' },
+        { id: 'q6_5', text: 'Is there a formal Standard Operating Procedure (SOP) mapped to the digital exception handling framework?' },
+        { id: 'q6_6', text: 'Can investigators easily append physical findings, images, and notes to the digital suspect product case file?' }
       ]}
     ];
 
     let state = {};
 
-    // 1. Initialization & URL Parsing
     function init() {
       initOnboarding();
       parseUrlState();
@@ -228,25 +216,23 @@
       calculateScore();
     }
 
-    // 2. Onboarding Modal (Feature 2)
     function initOnboarding() {
       try {
         if (!localStorage.getItem('sgs_onboarded')) {
           const overlay = document.getElementById('onboarding-overlay');
           overlay.style.display = 'flex';
-          document.body.classList.add('modal-open');
+          document.body.style.overflow = 'hidden';
         }
-      } catch (e) { /* private browsing */ }
+      } catch (e) {}
     }
 
     function dismissOnboarding() {
-      try { localStorage.setItem('sgs_onboarded', 'true'); } catch (e) {}
+      try { localStorage.setItem('sgs_onboarded', 'true'); } catch(e){}
       const overlay = document.getElementById('onboarding-overlay');
       overlay.style.display = 'none';
-      document.body.classList.remove('modal-open');
+      document.body.style.overflow = 'auto';
     }
 
-    // 3. Render Engine
     function renderAssessment() {
       const container = document.getElementById('assessment-container');
       container.innerHTML = '';
@@ -254,49 +240,54 @@
       milestones.forEach(m => {
         const card = document.createElement('div');
         card.className = 'assessment-card';
-        
-        // Header
+
         const header = document.createElement('div');
-        header.className = 'card-header';
+        header.style = 'padding: 16px 20px; display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); cursor: pointer; border-bottom: 1px solid var(--border-subtle);';
         header.innerHTML = `
-          <div class="card-milestone-badge">${m.id}</div>
-          <div class="card-title-block">
-            <h2 style="font-size: 1rem;">${m.title}</h2>
-            <div style="font-size: 0.75rem; color: var(--text-muted);">${m.stat} • Weight: ${(m.weight * 100)}%</div>
+          <div style="background:var(--bg-surface); padding:8px 12px; border-radius:var(--radius-sm); font-weight:700; color:var(--accent-blue); border:1px solid var(--border-subtle);">${m.id}</div>
+          <div>
+            <h2 style="font-size: 1rem; margin:0;">${m.title}</h2>
+            <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top:4px;">Weight: ${m.weight}%</div>
           </div>
         `;
-        header.onclick = () => body.classList.toggle('open');
+        
+        const body = document.createElement('div');
+        body.style = 'padding: 0 20px; display: block;';
+
+        header.onclick = () => {
+           body.style.display = body.style.display === 'none' ? 'block' : 'none';
+        };
         card.appendChild(header);
 
-        // Body
-        const body = document.createElement('div');
-        body.className = 'card-body open'; // default open for demo
-        
         m.questions.forEach(q => {
           const qBlock = document.createElement('div');
-          qBlock.className = 'question-item';
+          qBlock.style = 'padding: 20px 0; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 20px;';
           
           const ans = state[q.id];
+          const btnY = ans === 1 ? 'background:var(--accent-blue); color:#fff; border-color:var(--accent-blue);' : 'background:transparent; color:var(--text-secondary); border-color:var(--border-subtle);';
+          const btnN = ans === 0 ? 'background:var(--bg-surface); color:var(--text-primary); border-color:var(--text-muted);' : 'background:transparent; color:var(--text-secondary); border-color:var(--border-subtle);';
+
           qBlock.innerHTML = `
-            <div style="flex:1;">${q.text}</div>
-            <div class="response-group">
-              <button class="response-btn resp-yes ${ans === 1 ? 'active' : ''}" onclick="setAnswer('${q.id}', 1)">Yes</button>
-              <button class="response-btn resp-no ${ans === 0 ? 'active' : ''}" onclick="setAnswer('${q.id}', 0)">No</button>
+            <div style="flex:1; font-size:0.95rem; line-height:1.5;">${q.text}</div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn" style="border:1px solid; ${btnY}" onclick="setAnswer('${q.id}', 1)">Yes</button>
+              <button class="btn" style="border:1px solid; ${btnN}" onclick="setAnswer('${q.id}', 0)">No</button>
             </div>
           `;
           body.appendChild(qBlock);
         });
+
+        if(body.lastChild) body.lastChild.style.borderBottom = 'none';
 
         card.appendChild(body);
         container.appendChild(card);
       });
     }
 
-    // 4. State Management (Feature 5)
     function setAnswer(qId, val) {
       state[qId] = val;
       saveState();
-      renderAssessment(); // re-render to update active buttons
+      renderAssessment(); 
       calculateScore();
     }
 
@@ -317,9 +308,9 @@
       history.replaceState(null, '', window.location.pathname);
       renderAssessment();
       calculateScore();
+      document.getElementById('lc-panel').style.display = 'none';
     }
 
-    // 5. Compliance Scoring Engine (Feature 1)
     function calculateScore() {
       let totalWeightedScore = 0;
       let questionsAnswered = 0;
@@ -336,52 +327,47 @@
             mScore += state[q.id];
           }
         });
-        
-        // Normalize milestone score
-        if (mAnswered > 0) {
+
+        if (m.questions.length > 0) {
           const mPercent = mScore / m.questions.length;
           totalWeightedScore += (mPercent * m.weight);
         }
       });
 
-      const finalScore = Math.round(totalWeightedScore * 100);
-      
-      // Update UI
+      const finalScore = Math.round(totalWeightedScore);
+
       document.getElementById('score-val').innerText = finalScore;
       document.getElementById('progress-text').innerText = `${questionsAnswered}/${totalQuestions} Evaluated`;
 
-      // Gauge Animation (Circumference = 358)
       const offset = 358 - (358 * (finalScore / 100));
-      requestAnimationFrame(() => { // Double rAF for high refresh displays
+      requestAnimationFrame(() => { 
         requestAnimationFrame(() => {
           document.getElementById('gauge-fill').style.strokeDashoffset = offset;
         });
       });
 
-      // Update Tier
-      const tierBadge = document.getElementById('risk-tier');
+      const tierBadge = document.getElementById('tier-badge');
       if (questionsAnswered === 0) {
         tierBadge.innerText = 'PENDING';
-        tierBadge.style.background = 'rgba(255,255,255,0.1)';
-        tierBadge.style.color = '#fff';
+        tierBadge.style.background = 'var(--bg-surface)';
+        tierBadge.style.color = 'var(--text-muted)';
       } else if (finalScore >= 80) {
         tierBadge.innerText = 'LOW RISK';
-        tierBadge.style.background = 'rgba(34,197,94,0.15)';
+        tierBadge.style.background = 'rgba(34, 197, 94, 0.1)';
         tierBadge.style.color = '#4ade80';
-        document.getElementById('gauge-fill').style.stroke = 'var(--risk-low)';
+        document.getElementById('gauge-fill').style.stroke = '#4ade80';
       } else if (finalScore >= 50) {
         tierBadge.innerText = 'MEDIUM RISK';
-        tierBadge.style.background = 'rgba(234,179,8,0.15)';
+        tierBadge.style.background = 'rgba(234, 179, 8, 0.1)';
         tierBadge.style.color = '#fbbf24';
-        document.getElementById('gauge-fill').style.stroke = 'var(--risk-medium)';
+        document.getElementById('gauge-fill').style.stroke = '#fbbf24';
       } else {
         tierBadge.innerText = 'CRITICAL RISK';
-        tierBadge.style.background = 'rgba(239,68,68,0.15)';
+        tierBadge.style.background = 'rgba(239, 68, 68, 0.1)';
         tierBadge.style.color = '#f87171';
-        document.getElementById('gauge-fill').style.stroke = 'var(--risk-critical)';
+        document.getElementById('gauge-fill').style.stroke = '#f87171';
       }
 
-      // Show Lead Capture Gate if finished
       if (questionsAnswered === totalQuestions && totalQuestions > 0) {
         document.getElementById('lc-panel').style.display = 'block';
       } else {
@@ -389,13 +375,12 @@
       }
     }
 
-    // 6. Shareable URL Generator (Feature 6)
     function generateShareURL() {
       const b64 = btoa(JSON.stringify(state));
       const url = new URL(window.location.href);
       url.searchParams.set('s', b64);
       navigator.clipboard.writeText(url.toString()).then(() => {
-        alert("Assessment URL copied to clipboard. Share this with your compliance team.");
+        alert("Assessment URL copied to clipboard!");
       });
     }
 
@@ -403,24 +388,20 @@
       const params = new URLSearchParams(window.location.search);
       const s = params.get('s');
       if (s) {
-        try { state = JSON.parse(atob(s)); } catch(e) { console.error("Invalid state in URL"); }
+        try { state = JSON.parse(atob(s)); } catch(e) {}
       }
     }
 
-    // 7. Lead Capture Handler (Feature 4 mapped to Calendly)
     function lcHandlePrimaryClick() {
       const email = document.getElementById('lc-email').value;
       if (!email || !email.includes('@')) {
-        alert("Please enter a valid company email to proceed.");
+        alert("Please enter a valid company email.");
         return;
       }
-      // Redirect to Sui-Generis Calendly booking
-      window.open('https://calendly.com/rogersandy90/newdscsa-2026-compliance-demo-meeting', '_blank', 'noopener,noreferrer');
+      window.open('https://calendly.com/rogers-sui-generis', '_blank');
     }
 
-    // Boot App
     window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
-
