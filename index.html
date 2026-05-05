@@ -127,8 +127,10 @@
     .topbar-actions { display: flex; gap: 8px; }
 
     .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: var(--radius-md); font-size: 0.8rem; font-weight: 600; font-family: inherit; cursor: pointer; border: none; transition: var(--transition); white-space: nowrap; }
-    .btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-subtle); }
-    .btn-ghost:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-accent); }
+    .btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-subtle); transition: var(--transition); }
+    .btn-ghost:hover:not(:disabled) { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-accent); }
+    .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--text-muted); }
+    .btn-ghost:enabled { cursor: pointer; }
     .btn-primary { background: var(--accent-blue); color: #fff; box-shadow: 0 0 16px rgba(59, 130, 246, 0.35); }
     .btn-primary:hover { background: #2563eb; box-shadow: 0 0 24px rgba(59, 130, 246, 0.5); }
     .btn-large { padding: 12px 24px; font-size: 1rem; border-radius: var(--radius-lg); }
@@ -281,6 +283,47 @@
     .step-detail { font-size: 0.77rem; color: var(--text-secondary); line-height: 1.5; }
     .step-code { margin-top: 5px; font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); background: rgba(6,182,212,0.06); border: 1px solid rgba(6,182,212,0.15); padding: 6px 10px; border-radius: var(--radius-sm); white-space: pre-wrap; word-break: break-all; }
 
+    /* ── Audit Section (Section 3) ── */
+    .audit-section { width: 100%; }
+    .audit-section h3 { color: var(--text-primary); font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 18px; }
+    
+    .audit-subsection { background: rgba(0,0,0,0.15); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 16px; display: flex; gap: 14px; align-items: flex-start; }
+    .audit-subsection-icon { flex-shrink: 0; font-size: 1.2rem; line-height: 1.4; }
+    .audit-subsection-content { flex: 1; }
+    .audit-subsection-content h4 { color: var(--text-primary); font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; text-transform: none; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; }
+    .audit-subsection-content p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .readiness-gap { border-left: 3px solid var(--risk-high); background: rgba(249,115,22,0.04); }
+    .integration-surplus { border-left: 3px solid var(--risk-low); background: rgba(34,197,94,0.04); }
+
+    /* ── Gaps List ── */
+    .gaps-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+    .audit-gap-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px 14px; display: flex; gap: 12px; align-items: flex-start; transition: var(--transition); }
+    .audit-gap-item:hover { background: rgba(255,255,255,0.04); border-color: var(--border-accent); }
+    .audit-gap-item.audit-gap-unknown { opacity: 0.7; }
+    
+    .gap-id-badge { flex-shrink: 0; display: inline-block; background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); padding: 3px 9px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; font-family: var(--font-mono); }
+    .gap-item-content { flex: 1; min-width: 0; }
+    .gap-question { font-size: 0.8rem; color: var(--text-primary); line-height: 1.4; font-weight: 500; }
+    .gap-milestone { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+    .gap-remediation-inline { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .remediation-tag { display: inline-block; font-size: 0.65rem; background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); padding: 2px 8px; border-radius: 3px; font-weight: 500; }
+
+    /* ── Flags List ── */
+    .flags-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+    .audit-flag-item { background: rgba(255,255,255,0.02); border-left: 3px solid var(--risk-critical); border: 1px solid var(--border-subtle); border-left: 3px solid var(--risk-critical); border-radius: var(--radius-md); padding: 12px 14px; transition: var(--transition); }
+    .audit-flag-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(239,68,68,0.3); }
+    .flag-name { font-size: 0.8rem; color: #fca5a5; font-weight: 700; font-family: var(--font-mono); margin-bottom: 4px; }
+    .flag-explanation { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── PDF Print Optimization ── */
+    @media print {
+      .audit-section { break-inside: avoid; }
+      .audit-subsection { break-inside: avoid; page-break-inside: avoid; }
+      .audit-gap-item { break-inside: avoid; }
+      .audit-flag-item { break-inside: avoid; }
+    }
+
     /* ── Compliance Timeline strip ── */
     .timeline-section { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 24px; margin-bottom: 32px; }
     .timeline-section h4 { margin-bottom: 20px; }
@@ -300,7 +343,14 @@
     /* ── Footer & Utils ── */
     .page-footer { border-top: 1px solid var(--border-subtle); padding: 24px 0; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.75rem; color: var(--text-muted); }
     .footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-secondary); }
-    @media print { .topbar, .topbar-actions, .response-group, .btn, .card-header { pointer-events: none; } body { background: #fff; color: #000; } .assessment-card .card-body { display: block !important; } }
+    @media print {
+      .topbar, .response-group, .btn, .card-header { pointer-events: none; }
+      .topbar-actions { display: none; }
+      body { background: #fff; color: #000; }
+      .assessment-card .card-body { display: block !important; }
+      #submission-reference { display: block !important; color: #000; }
+      #audit-log-id-display { font-weight: bold; }
+    }
     .mt-16 { margin-top: 16px; }
     .disclaimer-banner { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--radius-md); padding: 12px 16px; font-size: 0.77rem; color: #fcd34d; margin-bottom: 24px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
     .disclaimer-icon { flex-shrink: 0; font-size: 16px; }
@@ -323,7 +373,7 @@
     <div class="topbar-spacer"></div>
     <div class="topbar-actions">
       <button class="btn btn-ghost" onclick="resetAssessment()">⟳ Reset</button>
-      <button class="btn btn-ghost" onclick="window.print()">⎙ Export PDF</button>
+      <button id="export-pdf-btn" class="btn btn-ghost" disabled onclick="window.print()">⎙ Export PDF</button>
       <button class="btn btn-primary" onclick="scrollToSummary()">📊 View Score</button>
     </div>
   </div>
@@ -335,6 +385,9 @@
     <div class="page-header-inner">
       <div class="page-title-block">
         <h1>DSCSA 2026 Interoperability Readiness Assessment</h1>
+        <div id="submission-reference" style="font-size:0.7rem;color:var(--text-muted);font-family:var(--font-mono);margin-top:4px;display:none;">
+          Official Reference: <span id="audit-log-id-display">—</span>
+        </div>
         <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:6px;max-width:640px;line-height:1.6;">
           Technical compliance evaluation across six DSCSA milestone domains.
           Weighted scoring prioritises EPCIS 1.2+ interoperability controls per
@@ -956,6 +1009,16 @@ function resetAssessment() {
     if (numEl) { numEl.textContent = '—'; numEl.style.color = 'var(--text-muted)'; }
     if (barEl)  { barEl.style.width = '0%'; }
   }
+  
+  // T-13: Disable Export PDF button and clear audit reference
+  const exportBtn = document.getElementById('export-pdf-btn');
+  if (exportBtn) {
+    exportBtn.disabled = true;
+    exportBtn.dataset.auditLogId = '';
+  }
+  const refContainer = document.getElementById('submission-reference');
+  if (refContainer) refContainer.style.display = 'none';
+  
   updateOverallScore();
   renderMilestoneBars();
 }
@@ -1056,17 +1119,200 @@ async function submitAssessment() {
       attestation_verdict: basePct >= 75 ? 'COMPLIANT' : 'NON_COMPLIANT',
       score_delta: techScore - basePct,
       flags: [],
-      gaps: []
+      gaps: [],
+      audit_log_id: `MOCK-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
     };
     renderDualScorePanel(mockResult);
     scrollToSummary();
   }
 }
 
+/* ──────────────────────────────────────────────────────────────
+   GAP & FLAG INTERPRETATION HELPERS
+   ────────────────────────────────────────────────────────────── */
+
+function getQuestionAndRemediation(questionId) {
+  for (const m of MILESTONES) {
+    const q = m.questions.find(x => x.id === questionId);
+    if (q) {
+      return {
+        milestoneId: m.id,
+        milestoneTitle: m.title,
+        questionText: q.text,
+        remediationSteps: m.remediationSteps || []
+      };
+    }
+  }
+  return null;
+}
+
+function getFlagExplanation(flag) {
+  const flagMap = {
+    'GLN_CHECK_DIGIT_FAIL': 'Invalid GS1 Global Location Number (GLN): Check digit validation failed. Regenerate GLN or verify manually.',
+    'GLN_NOT_REGISTERED': 'Declared GLN not registered with GS1 US. Contact GS1 to activate this identifier.',
+    'EPCIS_SCHEMA_VIOLATION': 'EPCIS event payload violates GS1 CBV 2.0 schema. Review event structure against standard.',
+    'MISSING_PI_ELEMENTS': 'One or more DSCSA Product Identifier (PI) elements missing from barcode encoding.',
+    'SERIALISATION_CONFLICT': 'Serial number exists in repository under different GTIN. Reconcile master data.',
+    'EVENT_TIMESTAMP_ANOMALY': 'EPCIS event timestamp is in the future or outside expected operational window.',
+    'AGGREGATION_TREE_BROKEN': 'Aggregation hierarchy broken: parent case not found in repository for unit claim.',
+    'TRANSACTION_ORPHAN': 'Transaction event references non-existent PO or Invoice identifier.',
+    'UNKNOWN_FLAG': 'Unknown technical flag detected. Contact your DSCSA compliance team for interpretation.'
+  };
+  return flagMap[flag] || flagMap['UNKNOWN_FLAG'];
+}
+
 function renderDualScorePanel(r) {
   const divergent = Math.abs(r.score_delta) > 15;
   const panel = document.getElementById('dual-score-panel');
   
+  // Section 1: Score Grid
+  let scoreGridHtml = `
+    <div class="dual-score-grid">
+      <div class="score-col attested">
+        <div class="score-label">Self-attested readiness</div>
+        <div class="score-val grade-${r.self_attested_grade}">
+          ${r.self_attested_grade}
+          <span class="score-sub">${Math.round(r.self_attested_score * 100)}/100</span>
+        </div>
+        <div class="verdict-badge ${r.attestation_verdict.toLowerCase()}">
+          ${r.attestation_verdict.replace('_', ' ')}
+        </div>
+      </div>
+      
+      <div class="score-col technical">
+        <div class="score-label">Deterministic technical score</div>
+        <div class="score-val" style="color:var(--text-primary);">${r.deterministic_technical_score}/100</div>
+        <div class="verdict-badge ${r.risk_tier.toLowerCase()}-risk">
+          ${r.risk_tier} RISK
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Section 2: Divergence Alert (only if present)
+  let divergenceHtml = '';
+  if (divergent) {
+    divergenceHtml = `
+      <div class="divergence-alert">
+        <strong>⚠ Integrity Divergence Detected</strong><br>
+        ${r.score_delta > 0
+          ? "Technical score exceeds self-assessment — likely missing attestations or data sync delays."
+          : "Self-assessment exceeds deterministic capability — significant readiness gap in technical execution."}
+      </div>
+    `;
+  }
+
+  // Section 3: Auditor Findings & Remediation
+  let auditSectionHtml = '';
+  const hasGaps = r.gaps && r.gaps.length > 0;
+  const hasFlags = r.flags && r.flags.length > 0;
+
+  if (hasGaps || hasFlags) {
+    // Delta Interpretation
+    let deltaInterpHtml = '';
+    if (r.score_delta !== undefined) {
+      if (r.score_delta < -15) {
+        deltaInterpHtml = `
+          <div class="audit-subsection readiness-gap">
+            <div class="audit-subsection-icon">📊</div>
+            <div class="audit-subsection-content">
+              <h4>Readiness Gap</h4>
+              <p>Self-assessment score exceeds deterministic technical capability by ${Math.abs(r.score_delta)} points, indicating a significant execution gap between stated readiness and demonstrated EPCIS compliance. Prioritise infrastructure remediation before November 2026 deadline.</p>
+            </div>
+          </div>
+        `;
+      } else if (r.score_delta > 15) {
+        deltaInterpHtml = `
+          <div class="audit-subsection integration-surplus">
+            <div class="audit-subsection-icon">✓</div>
+            <div class="audit-subsection-content">
+              <h4>Integration Surplus</h4>
+              <p>Technical score exceeds self-attestation by ${r.score_delta} points. This may indicate under-reported capabilities or EPCIS validation signals from upstream trading partners that your team has not fully acknowledged.</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Gaps Mapping
+    let gapsMappingHtml = '';
+    if (hasGaps) {
+      let gapsListHtml = '';
+      for (const gapId of r.gaps) {
+        const lookup = getQuestionAndRemediation(gapId);
+        if (lookup) {
+          gapsListHtml += `
+            <div class="audit-gap-item">
+              <div class="gap-id-badge">${gapId}</div>
+              <div class="gap-item-content">
+                <div class="gap-question">${lookup.questionText}</div>
+                <div class="gap-milestone">📍 ${lookup.milestoneId}: ${lookup.milestoneTitle}</div>
+                ${lookup.remediationSteps && lookup.remediationSteps.length > 0
+                  ? `<div class="gap-remediation-inline">
+                    ${lookup.remediationSteps.map(step => 
+                      `<span class="remediation-tag">${step.title}</span>`
+                    ).join('')}
+                  </div>`
+                  : ''}
+              </div>
+            </div>
+          `;
+        } else {
+          gapsListHtml += `
+            <div class="audit-gap-item audit-gap-unknown">
+              <div class="gap-id-badge">${gapId}</div>
+              <div class="gap-item-content">
+                <div class="gap-question">Unknown question identifier (assess manually)</div>
+              </div>
+            </div>
+          `;
+        }
+      }
+      gapsMappingHtml = `
+        <div class="audit-subsection gaps-section">
+          <div class="audit-subsection-icon">🔍</div>
+          <div class="audit-subsection-content">
+            <h4>Identified Compliance Gaps</h4>
+            <div class="gaps-list">${gapsListHtml}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Flags Display
+    let flagsDisplayHtml = '';
+    if (hasFlags) {
+      let flagsListHtml = '';
+      for (const flag of r.flags) {
+        const explanation = getFlagExplanation(flag);
+        flagsListHtml += `
+          <div class="audit-flag-item">
+            <div class="flag-name">🚨 ${flag}</div>
+            <div class="flag-explanation">${explanation}</div>
+          </div>
+        `;
+      }
+      flagsDisplayHtml = `
+        <div class="audit-subsection flags-section">
+          <div class="audit-subsection-icon">⚠️</div>
+          <div class="audit-subsection-content">
+            <h4>Technical Integrity Alerts</h4>
+            <div class="flags-list">${flagsListHtml}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    auditSectionHtml = `
+      <div class="audit-section" style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border-subtle);">
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: var(--text-primary);">Section 3: Auditor Findings & Remediation</h3>
+        ${deltaInterpHtml}
+        ${gapsMappingHtml}
+        ${flagsDisplayHtml}
+      </div>
+    `;
+  }
+
   panel.innerHTML = `
     <div style="width: 100%;">
       <h2 style="margin-bottom: 8px;">Dual-Score Architecture Results</h2>
@@ -1074,35 +1320,26 @@ function renderDualScorePanel(r) {
         Comparing client-side attestation against deterministic EPCIS validation signals.
       </p>
       
-      <div class="dual-score-grid">
-        <div class="score-col attested">
-          <div class="score-label">Self-attested readiness</div>
-          <div class="score-val grade-${r.self_attested_grade}">
-            ${r.self_attested_grade}
-            <span class="score-sub">${Math.round(r.self_attested_score * 100)}/100</span>
-          </div>
-          <div class="verdict-badge ${r.attestation_verdict.toLowerCase()}">
-            ${r.attestation_verdict.replace('_', ' ')}
-          </div>
-        </div>
-        
-        <div class="score-col technical">
-          <div class="score-label">Deterministic technical score</div>
-          <div class="score-val" style="color:var(--text-primary);">${r.deterministic_technical_score}/100</div>
-          <div class="verdict-badge ${r.risk_tier.toLowerCase()}-risk">
-            ${r.risk_tier} RISK
-          </div>
-        </div>
-      </div>
-      
-      ${divergent ? `<div class="divergence-alert">
-        <strong>⚠ Integrity Divergence Detected</strong><br>
-        ${r.score_delta > 0
-          ? "Technical score exceeds self-assessment — likely missing attestations or data sync delays."
-          : "Self-assessment exceeds deterministic capability — significant readiness gap in technical execution."}
-      </div>` : ''}
+      ${scoreGridHtml}
+      ${divergenceHtml}
+      ${auditSectionHtml}
     </div>
   `;
+
+  // T-13: Enable Export PDF button and inject audit reference
+  const exportBtn = document.getElementById('export-pdf-btn');
+  if (exportBtn && r.audit_log_id) {
+    exportBtn.disabled = false;
+    exportBtn.dataset.auditLogId = r.audit_log_id;
+    
+    // Display submission reference in header
+    const refContainer = document.getElementById('submission-reference');
+    const refDisplay = document.getElementById('audit-log-id-display');
+    if (refContainer && refDisplay) {
+      refDisplay.textContent = r.audit_log_id;
+      refContainer.style.display = 'block';
+    }
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────
