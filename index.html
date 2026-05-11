@@ -21,7 +21,7 @@
       --text-secondary: #475569;
       --text-muted:     #94a3b8;
 
-      --accent-blue:    #2563eb;
+      --accent-blue:    #3b82f6;
       --accent-cyan:    #0891b2;
       --accent-purple:  #7c3aed;
       --accent-amber:   #d97706;
@@ -59,7 +59,7 @@
       background-color: var(--bg-base);
       color: var(--text-primary);
       font-family: var(--font-sans);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.6;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
@@ -73,10 +73,10 @@
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
     /* ── Typography ── */
-    h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
-    h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-    h3 { font-size: 0.95rem; font-weight: 600; }
-    h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
+    h2 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.01em; }
+    h3 { font-size: 1.125rem; font-weight: 600; }
+    h4 { font-size: 0.9375rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
 
     a { color: #0891b2; text-decoration: none; font-weight: 500; }
     a:hover { text-decoration: underline; color: #0e7490; }
@@ -120,7 +120,7 @@
     }
 
     .brand-logo { display: flex; align-items: center; gap: 10px; }
-    .brand-icon { width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--glow-blue); flex-shrink: 0; }
+    .brand-icon { width: 36px; height: 36px; border-radius: var(--radius-md); background: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: none; flex-shrink: 0; }
     .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .brand-name { font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; color: #1e293b; }
     .brand-sub { font-size: 0.62rem; color: #64748b; letter-spacing: 0.05em; text-transform: none; font-weight: 500; }
@@ -136,8 +136,8 @@
     .btn-ghost:hover:not(:disabled) { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-accent); }
     .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--text-muted); }
     .btn-ghost:enabled { cursor: pointer; }
-    .btn-primary { background: #2563eb; color: #fff; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2); }
-    .btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
+    .btn-primary { background: #3b82f6; color: #fff; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2); }
+    .btn-primary:hover { background: #2563eb; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
     .btn-large { padding: 12px 24px; font-size: 1rem; border-radius: var(--radius-lg); }
 
     /* ── Page Header ── */
@@ -158,20 +158,16 @@
 
     /* ── KPI Header Row ── */
     .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-    .kpi-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: 20px; transition: var(--transition); position: relative; overflow: hidden; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
-    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-    .kpi-card.kpi-blue::before  { background: linear-gradient(90deg, #2563eb, transparent); }
-    .kpi-card.kpi-cyan::before  { background: linear-gradient(90deg, #0891b2, transparent); }
-    .kpi-card.kpi-purple::before { background: linear-gradient(90deg, #7c3aed, transparent); }
-    .kpi-card.kpi-amber::before  { background: linear-gradient(90deg, #d97706, transparent); }
+    .kpi-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: 32px; transition: var(--transition); position: relative; overflow: hidden; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #3b82f6; }
     .kpi-card:hover { background: #f8fafc; border-color: #cbd5e1; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); }
     .kpi-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
     .kpi-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
     .kpi-sub { font-size: 0.72rem; color: var(--text-secondary); }
 
     /* ── Overall Score Panel ── */
-    .score-panel { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-xl); padding: 28px 32px; margin-bottom: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
-    .score-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #2563eb 0%, #7c3aed 50%, #0891b2 100%); }
+    .score-panel { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-xl); padding: 32px; margin-bottom: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+    .score-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #3b82f6; }
     .dual-score-container { width: 100%; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
     .score-gauge-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .score-circle { width: 130px; height: 130px; position: relative; }
@@ -228,9 +224,9 @@
     .divergence-alert { margin-top: 20px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: var(--radius-md); padding: 14px 20px; color: #fcd34d; font-size: 0.85rem; text-align: left; line-height: 1.5; }
 
     /* ── Assessment Card ── */
-    .assessment-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-xl); overflow: hidden; transition: var(--transition); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
-    .assessment-card:hover { border-color: #cbd5e1; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); }
-    .card-header { padding: 18px 24px; display: flex; align-items: center; gap: 16px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border-subtle); transition: var(--transition); }
+    .assessment-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-xl); overflow: hidden; transition: var(--transition); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); margin-bottom: 16px; }
+    .assessment-card:hover { border-color: #cbd5e1; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+    .card-header { padding: 24px 32px; display: flex; align-items: center; gap: 16px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border-subtle); transition: var(--transition); }
     .card-header:hover { background: var(--bg-card-hover); }
     .card-milestone-badge { flex-shrink: 0; width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
     
@@ -256,7 +252,7 @@
     .card-chevron { flex-shrink: 0; color: var(--text-muted); transition: transform 0.25s ease; font-size: 16px; }
     .card-body { display: none; }
     .card-body.open { display: block; }
-    .card-body-inner { padding: 0 24px 24px; }
+    .card-body-inner { padding: 32px; }
 
     /* ── Question List ── */
     .questions-list { display: flex; flex-direction: column; gap: 1px; margin-top: 16px; }
@@ -275,10 +271,10 @@
     .resp-no:hover, .resp-no.active { background: #fee2e2; color: #dc2626; border-color: #f87171; box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1); }
 
     /* ── Remediation Panel ── */
-    .remediation-panel { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-lg); padding: 18px 20px; margin-top: 20px; }
+    .remediation-panel { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-lg); padding: 32px; margin-top: 20px; }
     .remediation-panel.hidden { display: none; }
     .remediation-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-    .remediation-header h3 { color: #fca5a5; font-size: 0.85rem; }
+    .remediation-header h3 { color: #fca5a5; font-size: 1rem; }
     .remediation-badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; font-weight: 700; background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
     .remediation-steps { display: flex; flex-direction: column; gap: 10px; }
     .remediation-step { display: flex; gap: 12px; align-items: flex-start; }
@@ -346,7 +342,7 @@
     .sections-grid { display: flex; flex-direction: column; gap: 24px; }
 
     /* ── Footer & Utils ── */
-    .page-footer { border-top: 1px solid var(--border-subtle); padding: 24px 0; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.75rem; color: var(--text-muted); }
+    .page-footer { border-top: 1px solid var(--border-subtle); padding: 32px 0; margin-top: 48px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
     .footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text-secondary); }
     @media print {
       .topbar, .response-group, .btn, .card-header { pointer-events: none; }
@@ -357,7 +353,7 @@
       #audit-log-id-display { font-weight: bold; }
     }
     .mt-16 { margin-top: 16px; }
-    .disclaimer-banner { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--radius-md); padding: 12px 16px; font-size: 0.77rem; color: #fcd34d; margin-bottom: 24px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+    .disclaimer-banner { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--radius-md); padding: 14px 16px; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 24px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.6; }
     .disclaimer-icon { flex-shrink: 0; font-size: 16px; }
   </style>
 </head>
@@ -390,17 +386,17 @@
     <div class="page-header-inner">
       <div class="page-title-block">
         <h1>DSCSA 2026 Interoperability Readiness Assessment</h1>
-        <div id="submission-reference" style="font-size:0.7rem;color:var(--text-muted);font-family:var(--font-mono);margin-top:4px;display:none;">
+        <div id="submission-reference" style="font-size:0.8125rem;color:var(--text-muted);font-family:var(--font-mono);margin-top:8px;display:none;">
           Official Reference: <span id="audit-log-id-display">—</span>
         </div>
-        <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:6px;max-width:640px;line-height:1.6;">
+        <p style="color:var(--text-secondary);font-size:1rem;margin-top:12px;max-width:640px;line-height:1.7;">
           Technical compliance evaluation across six DSCSA milestone domains.
           Weighted scoring prioritises EPCIS 1.2+ interoperability controls per
           FDA guidance and GS1 DSCSA EPCIS Implementation Guideline v2.0.
         </p>
         
         <div class="facility-input-wrap">
-          <span style="font-size:0.8rem; color:var(--text-muted); font-weight: 600;">Facility Name:</span>
+          <span style="font-size:0.95rem; color:var(--text-secondary); font-weight: 600;">Facility Name:</span>
           <input type="text" id="facility-name" placeholder="e.g. Main Distribution Center">
         </div>
 
@@ -459,8 +455,8 @@
             <defs>
               <linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%"   stop-color="#3b82f6"/>
-                <stop offset="50%"  stop-color="#8b5cf6"/>
-                <stop offset="100%" stop-color="#06b6d4"/>
+                <stop offset="50%"  stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#3b82f6"/>
               </linearGradient>
             </defs>
           </svg>
@@ -529,8 +525,10 @@
       <span>🛡️</span>
       <span>SGS-Sentinel Diagnostic &mdash; Independent DSCSA Audit Layer</span>
     </div>
-    <span>DSCSA §582 · 21 U.S.C. 360eee-1 · GS1 EPCIS 2.0 · FDA Guidance Apr 2023</span>
-    <span>© 2026 Sui-Generis LLC. All rights reserved.</span>
+    <span style="color: var(--text-muted); font-size: 0.875rem;">
+      <strong style="color: var(--text-primary);">Compliance Notice:</strong> Technical guidance only; consult Sui-Generis LLC for formal GAMP 5 validation.
+    </span>
+    <span style="color: var(--text-muted); font-size: 0.875rem;">DSCSA §582 · 21 U.S.C. 360eee-1 · GS1 EPCIS 2.0 · FDA Guidance Apr 2023 | © 2026 Sui-Generis LLC</span>
   </footer>
 </div>
 
@@ -554,9 +552,9 @@ const MILESTONES = [
     milestoneClass: "milestone-a",
     colorVar: "var(--accent-cyan)",
     questions: [
-      { id: "A-Q1", text: "Does the organisation maintain current Authorised Trading Partner (ATP) verification based on FDA/DEA/State board directories and conduct status checks at least quarterly?", hint: "§582(c)(4)(B) · DSCSA 2026 requires documented ATP verification before every transaction." },
-      { id: "A-Q2", text: "Does every saleable unit carry a validated GS1 DataMatrix 2D barcode encoding all four DSCSA Product Identifier elements (NDC/GTIN, lot, serial, expiry)?", hint: "§582(a)(5) · 2D barcode verification by ISO 15415 grader (grade ≥ D/1.5) on every line." },
-      { id: "A-Q3", text: "Are serial numbers generated using cryptographically secure methods (NIST-validated CSPRNG or HSM) with documented entropy sources?", hint: "Supply Chain Security · Serial number predictability is a regulatory red flag; audit trails required." }
+      { id: "A-Q1", title: "Step 1: Partner Identity", text: "Does the organisation maintain current Authorised Trading Partner (ATP) verification based on FDA/DEA/State board directories and conduct status checks at least quarterly?", hint: "§582(c)(4)(B) · DSCSA 2026 requires documented ATP verification before every transaction." },
+      { id: "A-Q2", title: "Step 2: Barcode Verification", text: "Does every saleable unit carry a validated GS1 DataMatrix 2D barcode encoding all four DSCSA Product Identifier elements (NDC/GTIN, lot, serial, expiry)?", hint: "§582(a)(5) · 2D barcode verification by ISO 15415 grader (grade ≥ D/1.5) on every line." },
+      { id: "A-Q3", title: "Step 3: Serial Generation", text: "Are serial numbers generated using cryptographically secure methods (NIST-validated CSPRNG or HSM) with documented entropy sources?", hint: "Supply Chain Security · Serial number predictability is a regulatory red flag; audit trails required." }
     ],
     remediationSteps: [
       { title: "Upgrade ATP Infrastructure", detail: "Integrate with FDA ATP Directory or RxSV network; automate quarterly status checks via DEA/State databases.", code: "# RxSV Integration\nATP_PROVIDER = 'FDA_ATD|RxSV'\nCHECK_FREQUENCY = 'QUARTERLY'" },
@@ -574,11 +572,11 @@ const MILESTONES = [
     milestoneClass: "milestone-b",
     colorVar: "var(--risk-critical)",
     questions: [
-      { id: "B-Q1", text: "Has the EPCIS repository been upgraded to EPCIS 2.0 / CBV 2.0 and validated with a network test partner?", hint: "§582(e)(1) · EPCIS 1.0/1.1 is non-conformant; EPCIS 2.0 is mandatory for DSCSA 2026 compliance." },
-      { id: "B-Q2", text: "Does the organisation's EPCIS endpoint expose a query interface capable of responding to T-STAMP trace requests in <24 hours?", hint: "T-STAMP (Track & Trace STAMP) queries must return complete chain of custody within regulatory timelines." },
-      { id: "B-Q3", text: "Has the organisation conducted EPCIS bilateral interoperability testing with ≥3 trading partners (manufacturer, wholesaler, dispenser)?", hint: "Network-level conformance alone is insufficient; bilateral testing validates real-world interop." },
-      { id: "B-Q4", text: "Does the organisation have live EPCIS event exchange with ≥80% of its tier-1 trading partners (or documented plan to reach 80% by Nov 2026)?", hint: "FDA benchmark: ≥80% trading partner coverage demonstrates readiness; gaps require remediation roadmap." },
-      { id: "B-Q5", text: "Does the EPCIS repository support ≥6-year immutable event retention with documented data governance (backup, archive, tamper-evident logs)?", hint: "§582(e)(4) · 6-year retention is regulatory baseline; longer retention recommended for audit defense." }
+      { id: "B-Q1", title: "Step 1: EPCIS Modernization", text: "Has the EPCIS repository been upgraded to EPCIS 2.0 / CBV 2.0 and validated with a network test partner?", hint: "§582(e)(1) · EPCIS 1.0/1.1 is non-conformant; EPCIS 2.0 is mandatory for DSCSA 2026 compliance." },
+      { id: "B-Q2", title: "Step 2: Query Capability", text: "Does the organisation's EPCIS endpoint expose a query interface capable of responding to T-STAMP trace requests in <24 hours?", hint: "T-STAMP (Track & Trace STAMP) queries must return complete chain of custody within regulatory timelines." },
+      { id: "B-Q3", title: "Step 3: Bilateral Testing", text: "Has the organisation conducted EPCIS bilateral interoperability testing with ≥3 trading partners (manufacturer, wholesaler, dispenser)?", hint: "Network-level conformance alone is insufficient; bilateral testing validates real-world interop." },
+      { id: "B-Q4", title: "Step 4: Trading Partner Coverage", text: "Does the organisation have live EPCIS event exchange with ≥80% of its tier-1 trading partners (or documented plan to reach 80% by Nov 2026)?", hint: "FDA benchmark: ≥80% trading partner coverage demonstrates readiness; gaps require remediation roadmap." },
+      { id: "B-Q5", title: "Step 5: Data Retention", text: "Does the EPCIS repository support ≥6-year immutable event retention with documented data governance (backup, archive, tamper-evident logs)?", hint: "§582(e)(4) · 6-year retention is regulatory baseline; longer retention recommended for audit defense." }
     ],
     remediationSteps: [
       { title: "EPCIS 2.0 Migration", detail: "Upgrade repository to EPCIS 2.0 CBV 2.0; validate with GS1 conformance test suite; deploy GS1 Digital Link URIs.", code: "# EPCIS 2.0 Endpoints\nEPCIS_VERSION = '2.0'\nCBV_VERSION = '2.0'\nQUERY_API = 'REST_JSON'" },
@@ -596,8 +594,8 @@ const MILESTONES = [
     milestoneClass: "milestone-c",
     colorVar: "var(--accent-purple)",
     questions: [
-      { id: "C-Q1", text: "Does the organisation have a documented and tested 'Suspect Product' exception workflow, including RxSV network connectivity for saleable returns verification?", hint: "§582(h) · Suspect product handling must follow defined workflows; RxSV validation is mandatory for wholesalers." },
-      { id: "C-Q2", text: "Is there a named DSCSA Compliance Officer and a Business Continuity Plan (BCP) with RTO ≤4 hours and documented recovery procedures for EPCIS system downtime?", hint: "Regulatory accountability + continuity planning; EPCIS downtime does not suspend §582 obligations." }
+      { id: "C-Q1", title: "Step 1: Exception Handling", text: "Does the organisation have a documented and tested 'Suspect Product' exception workflow, including RxSV network connectivity for saleable returns verification?", hint: "§582(h) · Suspect product handling must follow defined workflows; RxSV validation is mandatory for wholesalers." },
+      { id: "C-Q2", title: "Step 2: Business Continuity", text: "Is there a named DSCSA Compliance Officer and a Business Continuity Plan (BCP) with RTO ≤4 hours and documented recovery procedures for EPCIS system downtime?", hint: "Regulatory accountability + continuity planning; EPCIS downtime does not suspend §582 obligations." }
     ],
     remediationSteps: [
       { title: "RxSV Network Integration", detail: "Establish connection to approved Saleable Returns Verification network; configure automated product verification before restock.", code: "# RxSV Configuration\nVERIFICATION_PROVIDER = 'RxSV'\nAUTOMATED_RESTOCK_CHECK = true" },
@@ -900,7 +898,7 @@ function renderQuestions(m) {
     html += `
       <div class="question-item" id="qi-${q.id}">
         <div>
-          <div class="question-id">${q.id}</div>
+          <div class="question-id">${q.id} — ${q.title}</div>
           <div class="question-text">${q.text}</div>
           ${q.hint ? `<div class="question-hint">💡 ${q.hint}</div>` : ''}
         </div>
@@ -925,8 +923,8 @@ function renderRemediation(m) {
         <h3>Remediation Guidance — ${m.title}</h3>
         <span class="remediation-badge">ACTION REQUIRED</span>
       </div>
-      <div style="font-size: 0.7rem; color: var(--text-muted); background: rgba(59,130,246,0.04); border-left: 3px solid #3b82f6; padding: 8px 12px; margin-bottom: 12px; border-radius: 2px; line-height: 1.4;">
-        <strong style="color: #3b82f6;">ℹ️ Technical Guidance:</strong> These recommendations are for diagnostic purposes. Consult Sui-Generis LLC for formal GAMP 5 validation and regulatory submission strategy.
+      <div style="font-size: 0.875rem; color: var(--text-secondary); background: rgba(59,130,246,0.04); border-left: 3px solid #3b82f6; padding: 12px 16px; margin-bottom: 16px; border-radius: 4px; line-height: 1.6;">
+        <strong style="color: #3b82f6;">ℹ️ Technical Guidance Only:</strong> These recommendations are for diagnostic purposes only. Consult Sui-Generis LLC for formal GAMP 5 validation and regulatory submission strategy.
       </div>
       <div class="remediation-steps">
   `;
