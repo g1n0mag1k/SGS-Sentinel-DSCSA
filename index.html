@@ -3,38 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SGS-Sentinel | DSCSA 2026 Readiness Assessment</title>
+  <title>SGS-Sentinel Diagnostic | Independent DSCSA Audit Layer</title>
   <style>
     /* =========================================================
-       SGS-Sentinel — Sui-Generis Enterprise Dashboard Theme
+       SGS-Sentinel — Regulatory Professional Light Theme
        ========================================================= */
 
     :root {
-      --bg-base:        #0a0e1a;
-      --bg-surface:     #0f1629;
-      --bg-card:        #141d35;
-      --bg-card-hover:  #1a2545;
-      --border-subtle:  #1e2d50;
-      --border-accent:  #2a3f70;
+      --bg-base:        #f8fafc;
+      --bg-surface:     #f1f5f9;
+      --bg-card:        #ffffff;
+      --bg-card-hover:  #f8fafc;
+      --border-subtle:  #e2e8f0;
+      --border-accent:  #cbd5e1;
 
-      --text-primary:   #e8edf8;
-      --text-secondary: #8fa3c9;
-      --text-muted:     #4a5f85;
+      --text-primary:   #1e293b;
+      --text-secondary: #475569;
+      --text-muted:     #94a3b8;
 
-      --accent-blue:    #3b82f6;
-      --accent-cyan:    #06b6d4;
-      --accent-purple:  #8b5cf6;
-      --accent-amber:   #f59e0b;
+      --accent-blue:    #2563eb;
+      --accent-cyan:    #0891b2;
+      --accent-purple:  #7c3aed;
+      --accent-amber:   #d97706;
 
-      --risk-critical:  #ef4444;
-      --risk-high:      #f97316;
-      --risk-medium:    #eab308;
-      --risk-low:       #22c55e;
-      --risk-minimal:   #06b6d4;
+      --risk-critical:  #dc2626;
+      --risk-high:      #ea580c;
+      --risk-medium:    #ca8a04;
+      --risk-low:       #16a34a;
+      --risk-minimal:   #0891b2;
 
-      --score-bar-bg:   #1a2545;
-      --glow-blue:      0 0 20px rgba(59, 130, 246, 0.25);
-      --glow-cyan:      0 0 20px rgba(6, 182, 212, 0.25);
+      --score-bar-bg:   #e2e8f0;
+      --glow-blue:      0 0 12px rgba(37, 99, 235, 0.15);
+      --glow-cyan:      0 0 12px rgba(8, 145, 178, 0.15);
 
       --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
       --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
@@ -62,12 +62,15 @@
       font-size: 14px;
       line-height: 1.6;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
     /* ── Typography ── */
     h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
@@ -75,16 +78,17 @@
     h3 { font-size: 0.95rem; font-weight: 600; }
     h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
 
-    a { color: var(--accent-cyan); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: #0891b2; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; color: #0e7490; }
 
     code {
       font-family: var(--font-mono);
       font-size: 0.82em;
-      background: rgba(59, 130, 246, 0.12);
-      color: var(--accent-cyan);
+      background: #f0f4f8;
+      color: #0891b2;
       padding: 1px 5px;
       border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
     }
 
     /* ── Layout ── */
@@ -96,12 +100,13 @@
 
     /* ── Top Navigation Bar ── */
     .topbar {
-      background: rgba(10, 14, 26, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       border-bottom: 1px solid var(--border-subtle);
       backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .topbar-inner {
@@ -117,12 +122,12 @@
     .brand-logo { display: flex; align-items: center; gap: 10px; }
     .brand-icon { width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--glow-blue); flex-shrink: 0; }
     .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .brand-name { font-size: 1rem; font-weight: 800; letter-spacing: 0.04em; background: linear-gradient(90deg, #e8edf8 0%, #8b9fc9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .brand-sub { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-name { font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; color: #1e293b; }
+    .brand-sub { font-size: 0.62rem; color: #64748b; letter-spacing: 0.05em; text-transform: none; font-weight: 500; }
     .topbar-divider { width: 1px; height: 28px; background: var(--border-subtle); }
     .topbar-badge { font-size: 0.7rem; font-weight: 600; padding: 3px 8px; border-radius: 20px; letter-spacing: 0.04em; }
-    .badge-regulation { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.3); }
-    .badge-version { background: rgba(139, 92, 246, 0.12); color: var(--accent-purple); border: 1px solid rgba(139, 92, 246, 0.25); }
+    .badge-regulation { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    .badge-version { background: #ede9fe; color: #6b21a8; border: 1px solid #d8b4fe; }
     .topbar-spacer { flex: 1; }
     .topbar-actions { display: flex; gap: 8px; }
 
@@ -131,18 +136,18 @@
     .btn-ghost:hover:not(:disabled) { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-accent); }
     .btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--text-muted); }
     .btn-ghost:enabled { cursor: pointer; }
-    .btn-primary { background: var(--accent-blue); color: #fff; box-shadow: 0 0 16px rgba(59, 130, 246, 0.35); }
-    .btn-primary:hover { background: #2563eb; box-shadow: 0 0 24px rgba(59, 130, 246, 0.5); }
+    .btn-primary { background: #2563eb; color: #fff; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2); }
+    .btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
     .btn-large { padding: 12px 24px; font-size: 1rem; border-radius: var(--radius-lg); }
 
     /* ── Page Header ── */
-    .page-header { padding: 40px 0 32px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 32px; }
+    .page-header { padding: 40px 0 32px; border-bottom: 1px solid #e2e8f0; margin-bottom: 32px; }
     .page-header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
     .page-title-block h1 { margin-bottom: 6px; }
     
     .facility-input-wrap { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
-    .facility-input-wrap input { background: rgba(0,0,0,0.2); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 8px 12px; border-radius: var(--radius-sm); font-size: 0.9rem; width: 300px; outline: none; transition: var(--transition); }
-    .facility-input-wrap input:focus { border-color: var(--accent-blue); }
+    .facility-input-wrap input { background: #fff; border: 1px solid #e2e8f0; color: #1e293b; padding: 8px 12px; border-radius: var(--radius-sm); font-size: 0.9rem; width: 300px; outline: none; transition: var(--transition); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .facility-input-wrap input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); background: #f8fafc; }
 
     .page-title-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
     .meta-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
@@ -153,20 +158,20 @@
 
     /* ── KPI Header Row ── */
     .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-    .kpi-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 20px; transition: var(--transition); position: relative; overflow: hidden; }
-    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-    .kpi-card.kpi-blue::before  { background: linear-gradient(90deg, var(--accent-blue), transparent); }
-    .kpi-card.kpi-cyan::before  { background: linear-gradient(90deg, var(--accent-cyan), transparent); }
-    .kpi-card.kpi-purple::before { background: linear-gradient(90deg, var(--accent-purple), transparent); }
-    .kpi-card.kpi-amber::before  { background: linear-gradient(90deg, var(--accent-amber), transparent); }
-    .kpi-card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); }
+    .kpi-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-lg); padding: 20px; transition: var(--transition); position: relative; overflow: hidden; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .kpi-card.kpi-blue::before  { background: linear-gradient(90deg, #2563eb, transparent); }
+    .kpi-card.kpi-cyan::before  { background: linear-gradient(90deg, #0891b2, transparent); }
+    .kpi-card.kpi-purple::before { background: linear-gradient(90deg, #7c3aed, transparent); }
+    .kpi-card.kpi-amber::before  { background: linear-gradient(90deg, #d97706, transparent); }
+    .kpi-card:hover { background: #f8fafc; border-color: #cbd5e1; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); }
     .kpi-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
     .kpi-value { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
     .kpi-sub { font-size: 0.72rem; color: var(--text-secondary); }
 
     /* ── Overall Score Panel ── */
-    .score-panel { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 28px 32px; margin-bottom: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-    .score-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-purple) 50%, var(--accent-cyan) 100%); }
+    .score-panel { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-xl); padding: 28px 32px; margin-bottom: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+    .score-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #2563eb 0%, #7c3aed 50%, #0891b2 100%); }
     .dual-score-container { width: 100%; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
     .score-gauge-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .score-circle { width: 130px; height: 130px; position: relative; }
@@ -199,12 +204,12 @@
     .gln-collector-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
     .gln-hint { font-size: 0.7rem; color: var(--text-muted); font-weight: normal; margin-left: 8px; }
     .gln-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
-    .gln-input { background: rgba(0,0,0,0.2); border: 1px solid var(--border-subtle); color: var(--text-primary); padding: 8px 12px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.85rem; width: 220px; outline: none; transition: var(--transition); }
-    .gln-input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 2px rgba(59,130,246,0.2); }
+    .gln-input { background: #fff; border: 1px solid #e2e8f0; color: #1e293b; padding: 8px 12px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.85rem; width: 220px; outline: none; transition: var(--transition); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .gln-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); background: #f8fafc; }
     .add-gln-btn { background: transparent; color: var(--accent-cyan); border: 1px dashed var(--border-accent); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 4px; }
     .add-gln-btn:hover { background: rgba(6,182,212,0.1); border-color: var(--accent-cyan); }
     
-    .submit-section { margin-top: 32px; display: flex; justify-content: flex-end; padding: 24px 0; border-top: 1px solid var(--border-subtle); }
+    .submit-section { margin-top: 32px; display: flex; justify-content: flex-end; padding: 24px 0; border-top: 1px solid #e2e8f0; }
 
     .dual-score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; margin-top: 12px; }
     .score-col { background: rgba(0,0,0,0.15); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; }
@@ -223,8 +228,8 @@
     .divergence-alert { margin-top: 20px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: var(--radius-md); padding: 14px 20px; color: #fcd34d; font-size: 0.85rem; text-align: left; line-height: 1.5; }
 
     /* ── Assessment Card ── */
-    .assessment-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); overflow: hidden; transition: var(--transition); }
-    .assessment-card:hover { border-color: var(--border-accent); }
+    .assessment-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius-xl); overflow: hidden; transition: var(--transition); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .assessment-card:hover { border-color: #cbd5e1; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); }
     .card-header { padding: 18px 24px; display: flex; align-items: center; gap: 16px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border-subtle); transition: var(--transition); }
     .card-header:hover { background: var(--bg-card-hover); }
     .card-milestone-badge { flex-shrink: 0; width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -261,13 +266,13 @@
     .question-id { font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 3px; font-weight: 600; }
     .question-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
     .response-group { display: flex; gap: 4px; flex-shrink: 0; }
-    .response-btn { padding: 5px 12px; border-radius: var(--radius-sm); font-size: 0.72rem; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid transparent; transition: var(--transition); white-space: nowrap; }
-    .resp-yes { background: rgba(34,197,94,0.08); color: #86efac; border-color: rgba(34,197,94,0.2); }
-    .resp-yes:hover, .resp-yes.active { background: rgba(34,197,94,0.2); color: #4ade80; border-color: rgba(34,197,94,0.5); box-shadow: 0 0 10px rgba(34,197,94,0.2); }
-    .resp-partial { background: rgba(234,179,8,0.08); color: #fde68a; border-color: rgba(234,179,8,0.2); }
-    .resp-partial:hover, .resp-partial.active { background: rgba(234,179,8,0.2); color: #fbbf24; border-color: rgba(234,179,8,0.5); box-shadow: 0 0 10px rgba(234,179,8,0.2); }
-    .resp-no { background: rgba(239,68,68,0.08); color: #fca5a5; border-color: rgba(239,68,68,0.2); }
-    .resp-no:hover, .resp-no.active { background: rgba(239,68,68,0.2); color: #f87171; border-color: rgba(239,68,68,0.5); box-shadow: 0 0 10px rgba(239,68,68,0.2); }
+    .response-btn { padding: 8px 14px; border-radius: var(--radius-sm); font-size: 0.72rem; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid transparent; transition: var(--transition); white-space: nowrap; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+    .resp-yes { background: #f0fdf4; color: #166534; border-color: #86efac; }
+    .resp-yes:hover, .resp-yes.active { background: #dcfce7; color: #16a34a; border-color: #4ade80; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
+    .resp-partial { background: #fefce8; color: #854d0e; border-color: #fde047; }
+    .resp-partial:hover, .resp-partial.active { background: #fef3c7; color: #ca8a04; border-color: #facc15; box-shadow: 0 0 0 3px rgba(202, 138, 4, 0.1); }
+    .resp-no { background: #fef2f2; color: #7f1d1d; border-color: #fca5a5; }
+    .resp-no:hover, .resp-no.active { background: #fee2e2; color: #dc2626; border-color: #f87171; box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1); }
 
     /* ── Remediation Panel ── */
     .remediation-panel { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-lg); padding: 18px 20px; margin-top: 20px; }
@@ -363,8 +368,8 @@
     <div class="brand-logo">
       <div class="brand-icon">🛡️</div>
       <div class="brand-text">
-        <span class="brand-name">SGS-SENTINEL</span>
-        <span class="brand-sub">Sui-Generis LLC · GRC Platform</span>
+        <span class="brand-name">SGS-Sentinel Diagnostic</span>
+        <span class="brand-sub">Independent DSCSA Audit Layer</span>
       </div>
     </div>
     <div class="topbar-divider"></div>
@@ -403,7 +408,7 @@
           <span class="meta-chip chip-blue">🏢 Sui-Generis LLC</span>
           <span class="meta-chip chip-cyan">📋 DSCSA §582</span>
           <span class="meta-chip chip-purple">⚖️ 21 U.S.C. 360eee-1</span>
-          <span class="meta-chip chip-amber">⏱ Deadline: Nov 27, 2026</span>
+          <span class="meta-chip chip-amber" style="font-weight: 700; letter-spacing: 0.02em;">⏱ DEADLINE: Nov 27, 2026</span>
         </div>
       </div>
     </div>
@@ -412,7 +417,7 @@
   <div class="disclaimer-banner">
     <span class="disclaimer-icon">⚠️</span>
     <span>
-      <strong>Auditor Notice:</strong> This tool provides a structured readiness baseline against FDA DSCSA §582 and GS1 EPCIS 2.0 standards.
+      <strong>Regulatory Notice (Sui-Generis LLC):</strong> This Independent DSCSA Audit Diagnostic provides a structured readiness assessment against FDA DSCSA §582 and GS1 EPCIS 2.0 standards. Final compliance determinations and formal GAMP 5 validation require engagement with Sui-Generis LLC regulatory counsel. Results are advisory.
       Results are advisory. Final compliance determinations require engagement with a qualified regulatory counsel and certified GS1 partner.
     </span>
   </div>
@@ -522,7 +527,7 @@
   <footer class="page-footer">
     <div class="footer-brand">
       <span>🛡️</span>
-      <span>SGS-Sentinel &mdash; Sui-Generis LLC GRC Platform</span>
+      <span>SGS-Sentinel Diagnostic &mdash; Independent DSCSA Audit Layer</span>
     </div>
     <span>DSCSA §582 · 21 U.S.C. 360eee-1 · GS1 EPCIS 2.0 · FDA Guidance Apr 2023</span>
     <span>© 2026 Sui-Generis LLC. All rights reserved.</span>
@@ -533,126 +538,70 @@
 "use strict";
 
 /* ──────────────────────────────────────────────────────────────
-   DSCSA ASSESSMENT DATA MODEL
-   T-05: Syncing Weights with Backend
+   DSCSA ASSESSMENT DATA MODEL — v3.0.0
+   T-13: 10-Question Diagnostic (3 Milestones, Hardened Gate)
    ────────────────────────────────────────────────────────────── */
 
 const MILESTONES = [
   {
-    id: "M1",
-    label: "M1",
-    title: "Trading Partner Identification",
-    description: "GS1 GLN registration, DUNS/DEA enumeration, and authorised trading partner (ATP) verification",
-    weight: 1.0,
-    weightLabel: "Standard",
-    weightClass: "weight-standard",
-    milestoneClass: "milestone-m1",
-    colorVar: "var(--accent-cyan)",
-    questions: [
-      { id: "M1-Q1", text: "Has the organisation registered a GS1 Company Prefix (GCP) and obtained all required GTINs for every marketed pharmaceutical product?", hint: "Required for §582(a)(5) product identifier compliance. GCP registration at gs1us.org." },
-      { id: "M1-Q2", text: "Are Global Location Numbers (GLNs) assigned to every facility involved in the pharmaceutical supply chain (manufacturing, distribution, dispensing sites)?", hint: "GLNs are the authoritative location identifiers for EPCIS readPointID and bizLocationID fields." },
-      { id: "M1-Q3", text: "Does the organisation maintain an Authorised Trading Partner (ATP) list and verify ATP status before each transaction using FDA-recognised directories?", hint: "DSCSA §582(c)(4)(B) requires verification against DEA, FDA, or state board licensure." },
-      { id: "M1-Q4", text: "Is there a documented, automated process for onboarding new trading partners that captures required identifiers (GLN, DEA, NPI, DUNS)?", hint: "Manual onboarding without identifier validation is a common audit finding." },
-      { id: "M1-Q5", text: "Are trading partner licence status checks automated and run at least quarterly against FDA, DEA, and state board databases?", hint: "Annual-only checks leave windows for transacting with suspended or revoked entities." },
-      { id: "M1-Q6", text: "Does the organisation participate in, or have a plan to connect to, an industry ATP verification network (e.g., RxSV, HDA shared services)?", hint: "Shared ATP networks reduce duplicate verification overhead and improve coverage." }
-    ],
-    remediationSteps: [
-      { title: "Register GS1 Company Prefix", detail: "Navigate to gs1us.org → Join GS1 US → select Company Prefix tier based on unique product SKU count.", code: "# GTIN-14 structure for prescription drugs\n# [Indicator][GCP(7-9)][Item Ref][Check Digit]" }
-    ]
-  },
-  {
-    id: "M2",
-    label: "M2",
-    title: "Product Serialisation & 2D Barcode Compliance",
-    description: "Unit-level serialisation (SNDC), GS1 DataMatrix 2D barcode encoding, and DSCSA product identifier (PI) elements",
-    weight: 1.0, // T-05 Update
-    weightLabel: "Standard",
-    weightClass: "weight-standard",
-    milestoneClass: "milestone-m2",
-    colorVar: "var(--accent-blue)",
-    questions: [
-      { id: "M2-Q1", text: "Does every saleable unit carry a GS1 DataMatrix 2D barcode encoding all four DSCSA Product Identifier (PI) elements?", hint: "§582(a)(5) mandates all four PI elements." },
-      { id: "M2-Q2", text: "Are serial numbers generated using a NIST-validated CSPRNG or hardware security module (HSM)?", hint: "Serial number predictability is a supply chain integrity risk." },
-      { id: "M2-Q3", text: "Is there an automated inline barcode verification system (ISO/IEC 15415 grader) on every packaging line?", hint: "ISO 15415 grade ≥ 1.5 (D) is the minimum acceptable." },
-      { id: "M2-Q4", text: "Does the organisation's WMS/ERP commission (create) an EPCIS ObjectEvent with bizStep=commissioning for every new serial number?", hint: "Commissioning events are required before shipping." },
-      { id: "M2-Q5", text: "Is there a documented serialisation master data governance process that maps GTIN→NDC?", hint: "GTIN-to-NDC mismatches cause event rejection." },
-      { id: "M2-Q6", text: "Have downstream scanning workflows been upgraded to capture 2D DataMatrix?", hint: "Legacy 1D-only scanners cannot decode the PI." }
-    ]
-  },
-  {
-    id: "M3",
-    label: "M3",
-    title: "Lot-Level Tracing & EPCIS Event Capture",
-    description: "Full EPCIS event history (commissioning, aggregation, shipping, receiving, decommissioning)",
+    id: "A",
+    label: "A",
+    title: "Physical Integrity",
+    description: "GS1 identifiers, serialisation, and ATP verification — foundation of supply chain authentication",
     weight: 1.5,
-    weightLabel: "Critical",
-    weightClass: "weight-critical",
-    milestoneClass: "milestone-m3",
-    colorVar: "var(--accent-purple)",
-    questions: [
-      { id: "M3-Q1", text: "Does the organisation capture EPCIS events for all six standard DSCSA business steps?", hint: "All six steps must be captured for full lot-level trace." },
-      { id: "M3-Q2", text: "Are EPCIS AggregationEvents generated whenever units are consolidated into cases or cases into pallets?", hint: "Missing aggregation events break lot-level trace trees." },
-      { id: "M3-Q3", text: "Are EPCIS TransactionEvents generated linking each shipment to a Purchase Order or Invoice?", hint: "Transaction linkage is required." },
-      { id: "M3-Q4", text: "Is there a defined data quality (DQ) SLA ensuring EPCIS events are captured within 24 hours?", hint: "Late events create holes in the chain-of-custody." },
-      { id: "M3-Q5", text: "Does the EPCIS repository support ≥6-year immutable event retention with tamper-evident logs?", hint: "§582(e)(4) requires 6-year retention." },
-      { id: "M3-Q6", text: "Is there an automated lot-level trace query capability returning a complete chain within 4 hours?", hint: "Manual investigation cannot meet 24-hour SLA." }
-    ]
-  },
-  {
-    id: "M4",
-    label: "M4",
-    title: "Saleable Returns Verification",
-    description: "DSCSA-compliant saleable returns verification, RxSV network connectivity, and disposition event capture",
-    weight: 1.5, // T-05 Update
     weightLabel: "High",
     weightClass: "weight-high",
-    milestoneClass: "milestone-m4",
-    colorVar: "var(--accent-amber)",
+    milestoneClass: "milestone-a",
+    colorVar: "var(--accent-cyan)",
     questions: [
-      { id: "M4-Q1", text: "Is the organisation connected to a DSCSA-approved Saleable Returns Verification (RxSV) network?", hint: "§582(c)(4)(C) requires wholesalers to verify returned product." },
-      { id: "M4-Q2", text: "Does the WMS trigger an automated serialised product verification before restock?", hint: "Unrestricted restocking is an enforcement violation." },
-      { id: "M4-Q3", text: "Are EPCIS TransformationEvents captured for all saleable return processing?", hint: "Disposition without a corresponding EPCIS event creates an orphan." },
-      { id: "M4-Q4", text: "Is there a documented and tested 'Suspect Product' quarantine workflow?", hint: "§582(h)(2) requires notification to FDA within 24 hours." },
-      { id: "M4-Q5", text: "Does the organisation document which products qualify for DSCSA saleable returns exemptions?", hint: "Misapplying exemptions creates verification gaps." },
-      { id: "M4-Q6", text: "Are all 3PLs handling product returns contractually bound to DSCSA requirements?", hint: "3PL non-compliance does not remove §582 liability." }
+      { id: "A-Q1", text: "Does the organisation maintain current Authorised Trading Partner (ATP) verification based on FDA/DEA/State board directories and conduct status checks at least quarterly?", hint: "§582(c)(4)(B) · DSCSA 2026 requires documented ATP verification before every transaction." },
+      { id: "A-Q2", text: "Does every saleable unit carry a validated GS1 DataMatrix 2D barcode encoding all four DSCSA Product Identifier elements (NDC/GTIN, lot, serial, expiry)?", hint: "§582(a)(5) · 2D barcode verification by ISO 15415 grader (grade ≥ D/1.5) on every line." },
+      { id: "A-Q3", text: "Are serial numbers generated using cryptographically secure methods (NIST-validated CSPRNG or HSM) with documented entropy sources?", hint: "Supply Chain Security · Serial number predictability is a regulatory red flag; audit trails required." }
+    ],
+    remediationSteps: [
+      { title: "Upgrade ATP Infrastructure", detail: "Integrate with FDA ATP Directory or RxSV network; automate quarterly status checks via DEA/State databases.", code: "# RxSV Integration\nATP_PROVIDER = 'FDA_ATD|RxSV'\nCHECK_FREQUENCY = 'QUARTERLY'" },
+      { title: "Deploy 2D Barcode Verification", detail: "Install ISO 15415 certified barcode verifier on each packaging line; capture grade data in EPCIS events.", code: "# Barcode Grading\nVERIFIER_CERT = 'ISO_15415'\nMIN_GRADE = 'D' # Grade D = 1.5" }
     ]
   },
   {
-    id: "M5",
-    label: "M5",
-    title: "EPCIS 1.2+ Interoperability [CRITICAL WEIGHT]",
-    description: "EPCIS 2.0 repository conformance, T-STAMP query/response, and GS1 Digital Link",
-    weight: 2.5, // T-05 Update
-    weightLabel: "⚡ Max Priority",
+    id: "B",
+    label: "B",
+    title: "Data Exchange",
+    description: "EPCIS 2.0 event repository, T-STAMP queries, and 6-year retention — interoperability mandate",
+    weight: 2.0,
+    weightLabel: "⚡ Critical",
     weightClass: "weight-critical",
-    milestoneClass: "milestone-m5",
+    milestoneClass: "milestone-b",
     colorVar: "var(--risk-critical)",
     questions: [
-      { id: "M5-Q1", text: "Has the EPCIS repository been upgraded to EPCIS 2.0 / CBV 2.0 and validated?", hint: "EPCIS 1.0/1.1 is non-conformant with DSCSA 2026." },
-      { id: "M5-Q2", text: "Does the EPCIS implementation expose a standards-compliant query interface capable of answering T-STAMP queries?", hint: "T-STAMP queries require response within 24 hours." },
-      { id: "M5-Q3", text: "Are all EPCIS event EPCs encoded as GS1 Digital Link URIs?", hint: "Required for DSCSA 2026 network interoperability." },
-      { id: "M5-Q4", text: "Has the organisation completed bilateral EPCIS testing with at least three major trading partners?", hint: "Network-level testing alone is insufficient." },
-      { id: "M5-Q5", text: "Is the EPCIS event payload schema validated against GS1 CBV 2.0 at publish time?", hint: "CBV vocabulary violations silently corrupt interoperability." },
-      { id: "M5-Q6", text: "Does the organisation have a defined EPCIS federation strategy?", hint: "Manual re-keying is an anti-pattern." }
+      { id: "B-Q1", text: "Has the EPCIS repository been upgraded to EPCIS 2.0 / CBV 2.0 and validated with a network test partner?", hint: "§582(e)(1) · EPCIS 1.0/1.1 is non-conformant; EPCIS 2.0 is mandatory for DSCSA 2026 compliance." },
+      { id: "B-Q2", text: "Does the organisation's EPCIS endpoint expose a query interface capable of responding to T-STAMP trace requests in <24 hours?", hint: "T-STAMP (Track & Trace STAMP) queries must return complete chain of custody within regulatory timelines." },
+      { id: "B-Q3", text: "Has the organisation conducted EPCIS bilateral interoperability testing with ≥3 trading partners (manufacturer, wholesaler, dispenser)?", hint: "Network-level conformance alone is insufficient; bilateral testing validates real-world interop." },
+      { id: "B-Q4", text: "Does the organisation have live EPCIS event exchange with ≥80% of its tier-1 trading partners (or documented plan to reach 80% by Nov 2026)?", hint: "FDA benchmark: ≥80% trading partner coverage demonstrates readiness; gaps require remediation roadmap." },
+      { id: "B-Q5", text: "Does the EPCIS repository support ≥6-year immutable event retention with documented data governance (backup, archive, tamper-evident logs)?", hint: "§582(e)(4) · 6-year retention is regulatory baseline; longer retention recommended for audit defense." }
+    ],
+    remediationSteps: [
+      { title: "EPCIS 2.0 Migration", detail: "Upgrade repository to EPCIS 2.0 CBV 2.0; validate with GS1 conformance test suite; deploy GS1 Digital Link URIs.", code: "# EPCIS 2.0 Endpoints\nEPCIS_VERSION = '2.0'\nCBV_VERSION = '2.0'\nQUERY_API = 'REST_JSON'" },
+      { title: "Establish T-STAMP Query Endpoint", detail: "Implement RESTful query interface returning lot-level trace in <24 hours; validate SLA with test queries.", code: "# T-STAMP Query Response\nQUERY_TYPE = 'lot_trace'\nRESPONSE_TIME_SLA = '<24h'\nFORMAT = 'EPCIS_2.0_JSON'" }
     ]
   },
   {
-    id: "M6",
-    label: "M6",
-    title: "Full Trading-Partner System Interoperability",
-    description: "End-to-end T2T EPCIS exchange, network verification, and FDA audit readiness",
-    weight: 2.0, // T-05 Update
-    weightLabel: "Very High",
-    weightClass: "weight-critical",
-    milestoneClass: "milestone-m6",
-    colorVar: "var(--risk-high)",
+    id: "C",
+    label: "C",
+    title: "Governance",
+    description: "Business continuity, exception handling, and regulatory accountability — organisational readiness",
+    weight: 1.2,
+    weightLabel: "Standard",
+    weightClass: "weight-standard",
+    milestoneClass: "milestone-c",
+    colorVar: "var(--accent-purple)",
     questions: [
-      { id: "M6-Q1", text: "Does the organisation have live EPCIS event exchange with ≥80% of its tier-1 trading partners?", hint: "FDA considers ≥80% coverage the threshold." },
-      { id: "M6-Q2", text: "Is there a network-level interoperability layer enabling event exchange without bilateral projects?", hint: "Point-to-point integrations do not scale." },
-      { id: "M6-Q3", text: "Does the organisation maintain a live DSCSA compliance dashboard?", hint: "Lack of visibility causes late-detection of failures." },
-      { id: "M6-Q4", text: "Has the organisation conducted a formal DSCSA readiness audit within the last 12 months?", hint: "Annual audits demonstrate good-faith compliance." },
-      { id: "M6-Q5", text: "Is there a tested Business Continuity Plan (BCP) with RTO ≤4 hours?", hint: "EPCIS downtime does not suspend §582 obligations." },
-      { id: "M6-Q6", text: "Does the organisation have a dedicated DSCSA Compliance Officer?", hint: "FDA expects a named compliance accountable party." }
+      { id: "C-Q1", text: "Does the organisation have a documented and tested 'Suspect Product' exception workflow, including RxSV network connectivity for saleable returns verification?", hint: "§582(h) · Suspect product handling must follow defined workflows; RxSV validation is mandatory for wholesalers." },
+      { id: "C-Q2", text: "Is there a named DSCSA Compliance Officer and a Business Continuity Plan (BCP) with RTO ≤4 hours and documented recovery procedures for EPCIS system downtime?", hint: "Regulatory accountability + continuity planning; EPCIS downtime does not suspend §582 obligations." }
+    ],
+    remediationSteps: [
+      { title: "RxSV Network Integration", detail: "Establish connection to approved Saleable Returns Verification network; configure automated product verification before restock.", code: "# RxSV Configuration\nVERIFICATION_PROVIDER = 'RxSV'\nAUTOMATED_RESTOCK_CHECK = true" },
+      { title: "BCP & Compliance Organization", detail: "Appoint DSCSA Compliance Officer; document BCP with recovery procedures; conduct annual readiness audit.", code: "# Governance Structure\nCOMPLIANCE_OFFICER = 'Designated'\nBCP_RTO_HOURS = 4\nAUDIT_FREQUENCY = 'ANNUAL'" }
     ]
   }
 ];
@@ -732,6 +681,153 @@ function getScoreNarrative(pct, tier) {
 }
 
 /* ──────────────────────────────────────────────────────────────
+   HARDENED SILENT GATE: Data Exchange Critical Failure Detection
+   ALCOA+ Audit Trail Logging
+   ────────────────────────────────────────────────────────────── */
+
+/**
+ * Hardened Silent Gate: Data Exchange Criticality Check
+ * If ANY question in Milestone B (Data Exchange) is marked 'no', trigger CRITICAL_FAILURE.
+ * Part of T-13: Strict DSCSA 2026 hardened compliance model.
+ *
+ * Returns:
+ *   - { triggerReason: string } if gate is triggered
+ *   - null if gate is not triggered (proceed with normal assessment)
+ */
+function checkDataExchangeGate() {
+  const milestoneB = MILESTONES.find(m => m.id === 'B');
+  if (!milestoneB) return null;
+
+  for (const q of milestoneB.questions) {
+    const response = responses[q.id];
+    if (response === 'no') {
+      return {
+        triggerReason: `Data Exchange Critical Gate: Question "${q.id}" marked as failed (no).`,
+        questionId: q.id,
+        questionText: q.text,
+        milestoneId: 'B',
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * Map technical verdict to user-friendly display label.
+ * Maintains ALCOA+ audit trail by logging actual verdict to console/backend.
+ */
+function getVerdictDisplay(technicalVerdict) {
+  const mapping = {
+    'CRITICAL_FAILURE': 'Critical Risk',
+    'NON_COMPLIANT': 'High Regulatory Exposure',
+    'COMPLIANT': 'Compliant',
+  };
+  return mapping[technicalVerdict] || technicalVerdict;
+}
+
+/**
+ * ALCOA+ Audit Trail Logger
+ * Records assessment decision with timestamp, actor ID, and failure reason.
+ * Maintains non-repudiation and regulatory defensibility.
+ */
+function logAssessmentAuditTrail(result, gateTriggered = null) {
+  const auditRecord = {
+    // Attributable: WHO performed the assessment
+    actorId: result.actorId,
+    timestamp: result.assessedAt,
+    userAgent: navigator.userAgent,
+
+    // Legible: WHAT was assessed
+    verdict: result.verdict,
+    score: result.score,
+    grade: result.grade,
+
+    // Contemporaneous: WHEN was it recorded
+    recordedAt: new Date().toISOString(),
+
+    // Original: HOW was it determined
+    gateTriggered: gateTriggered ? gateTriggered.triggerReason : 'No critical gate triggered',
+    detailedCriteria: result.details || [],
+
+    // Accurate: FULL CONTEXT
+    allResponses: JSON.parse(JSON.stringify(responses)),
+  };
+
+  // T-13: Strict DSCSA compliance: Log to console for now; backend integration pending
+  console.log('[ALCOA+ AUDIT TRAIL]', auditRecord);
+  return auditRecord;
+}
+
+/**
+ * Execute Assessment with Hardened Silent Gate
+ * Calls Data Exchange criticality gate first; if triggered, returns CRITICAL_FAILURE.
+ * Otherwise, proceeds with standard weight-normalized assessment.
+ *
+ * Part of T-13 "Strict Mode" compliance engine.
+ */
+function executeHardenedAssessment() {
+  // Step 1: Check Hardened Silent Gate (Data Exchange)
+  const gateTriggered = checkDataExchangeGate();
+
+  if (gateTriggered) {
+    // CRITICAL GATE TRIGGERED: Return CRITICAL_FAILURE verdict
+    const actorId = document.getElementById('facility-name')?.value || 'Unknown Actor';
+    const result = {
+      actorId,
+      score: 0,
+      compliant: false,
+      grade: 'F',
+      verdict: 'CRITICAL_FAILURE',
+      assessedAt: new Date().toISOString(),
+      criticalGateTrigger: gateTriggered.triggerReason,
+      details: [
+        {
+          id: gateTriggered.questionId,
+          description: `${gateTriggered.milestoneId}: ${gateTriggered.questionText}`,
+          weight: 2.0,
+          passed: false,
+          critical: true,
+        }
+      ],
+    };
+
+    // Log audit trail for non-repudiation
+    logAssessmentAuditTrail(result, gateTriggered);
+    return result;
+  }
+
+  // Step 2: Gate not triggered; proceed with standard weighted assessment
+  // (placeholder for future buildAssessmentCriteria integration)
+  const actorId = document.getElementById('facility-name')?.value || 'Unknown Actor';
+  const overallScore = calcOverallScore();
+  const pct = overallScore.pct !== null ? overallScore.pct : 0;
+  const normalizedScore = pct / 100;
+
+  let grade;
+  if (normalizedScore >= 0.90) grade = 'A';
+  else if (normalizedScore >= 0.75) grade = 'B';
+  else if (normalizedScore >= 0.60) grade = 'C';
+  else if (normalizedScore >= 0.50) grade = 'D';
+  else grade = 'F';
+
+  const verdict = normalizedScore >= 0.75 ? 'COMPLIANT' : 'NON_COMPLIANT';
+
+  const result = {
+    actorId,
+    score: normalizedScore,
+    compliant: verdict === 'COMPLIANT',
+    grade,
+    verdict,
+    assessedAt: new Date().toISOString(),
+    pct,
+  };
+
+  // Log audit trail
+  logAssessmentAuditTrail(result);
+  return result;
+}
+
+/* ──────────────────────────────────────────────────────────────
    DOM RENDERING
    ────────────────────────────────────────────────────────────── */
 
@@ -744,13 +840,13 @@ function renderSections() {
     card.className = 'assessment-card';
     card.id = `card-${m.id}`;
 
-    const isOpen = m.id === 'M1';
+    const isOpen = m.id === 'A';
 
-    // T-07: Conditionally inject GLN UI for M1 only
+    // T-07: Conditionally inject GLN UI for Milestone A (Physical Integrity) only
     let glnHtml = '';
-    if (m.id === 'M1') {
+    if (m.id === 'A') {
       glnHtml = `
-        <div class="gln-collector" id="gln-collector-M1">
+        <div class="gln-collector" id="gln-collector-A">
           <div class="gln-collector-label">
             Enter your registered facility GLNs
             <span class="gln-hint">13 digits — used for backend verification</span>
@@ -828,6 +924,9 @@ function renderRemediation(m) {
         <span>🔧</span>
         <h3>Remediation Guidance — ${m.title}</h3>
         <span class="remediation-badge">ACTION REQUIRED</span>
+      </div>
+      <div style="font-size: 0.7rem; color: var(--text-muted); background: rgba(59,130,246,0.04); border-left: 3px solid #3b82f6; padding: 8px 12px; margin-bottom: 12px; border-radius: 2px; line-height: 1.4;">
+        <strong style="color: #3b82f6;">ℹ️ Technical Guidance:</strong> These recommendations are for diagnostic purposes. Consult Sui-Generis LLC for formal GAMP 5 validation and regulatory submission strategy.
       </div>
       <div class="remediation-steps">
   `;
@@ -925,21 +1024,31 @@ function updateMilestoneScore(milestoneId) {
 }
 
 function updateOverallScore() {
-  const { pct, totalAnswered, totalQuestions } = calcOverallScore();
+  // T-13: Execute hardened assessment with Data Exchange critical gate
+  const assessment = executeHardenedAssessment();
+  const pct = assessment.pct !== undefined ? assessment.pct : (assessment.score !== undefined ? Math.round(assessment.score * 100) : null);
+  
+  // Display technical verdict in console for audit trail; show user-friendly label in UI
+  const userFriendlyVerdict = getVerdictDisplay(assessment.verdict);
+  console.log('[HARDENED ASSESSMENT]', { technicalVerdict: assessment.verdict, userFriendlyVerdict, score: pct });
+
   const tier = getRiskTier(pct);
 
   document.getElementById('kpi-overall').textContent = pct !== null ? `${pct}%` : '—';
   document.getElementById('kpi-overall').style.color  = getScoreColour(pct);
 
-  const m5 = MILESTONES.find(x => x.id === 'M5');
-  const s5  = calcMilestoneScore(m5);
-  document.getElementById('kpi-epcis').textContent = (s5 && s5.pct !== null) ? `${s5.pct}%` : '—';
-  document.getElementById('kpi-epcis').style.color  = (s5 && s5.pct !== null) ? getScoreColour(s5.pct) : 'var(--text-secondary)';
+  // KPI: Data Exchange milestone score (Milestone B)
+  const milestoneB = MILESTONES.find(x => x.id === 'B');
+  const sB = milestoneB ? calcMilestoneScore(milestoneB) : null;
+  document.getElementById('kpi-epcis').textContent = (sB && sB.pct !== null) ? `${sB.pct}%` : '—';
+  document.getElementById('kpi-epcis').style.color  = (sB && sB.pct !== null) ? getScoreColour(sB.pct) : 'var(--text-secondary)';
 
+  const { totalAnswered, totalQuestions } = calcOverallScore();
   document.getElementById('kpi-answered').textContent = `${totalAnswered} / ${totalQuestions}`;
 
   const tierKpi = document.getElementById('kpi-tier');
-  tierKpi.innerHTML = pct !== null ? `<span class="score-tier-badge ${tier.cls}">${tier.label}</span>` : '—';
+  // T-13: Display user-friendly verdict label with ALCOA+ audit trail
+  tierKpi.innerHTML = assessment.verdict ? `<span class="score-tier-badge">${userFriendlyVerdict}</span>` : '—';
 
   const arc = document.getElementById('score-arc');
   if(arc) {
@@ -951,17 +1060,33 @@ function updateOverallScore() {
   const scoreDisp = document.getElementById('score-display');
   if(scoreDisp) {
       scoreDisp.textContent = pct !== null ? pct : '—';
-      scoreDisp.style.color = getScoreColour(pct);
+      // T-13: Use red for Critical Failure, maintaining accessibility
+      const scoreColor = assessment.verdict === 'CRITICAL_FAILURE' ? 'var(--risk-critical)' : getScoreColour(pct);
+      scoreDisp.style.color = scoreColor;
   }
 
   const tierBadge = document.getElementById('tier-badge');
   if(tierBadge) {
-      tierBadge.textContent = pct !== null ? tier.label : 'AWAITING INPUT';
-      tierBadge.className = `score-tier-badge ${tier.cls || 'tier-medium'}`;
+      tierBadge.textContent = assessment.verdict ? userFriendlyVerdict : 'AWAITING INPUT';
+      // T-13: Apply correct color for verdict badge
+      if (assessment.verdict === 'CRITICAL_FAILURE') {
+        tierBadge.className = 'score-tier-badge tier-critical';
+      } else if (assessment.verdict === 'COMPLIANT') {
+        tierBadge.className = 'score-tier-badge tier-minimal';
+      } else {
+        tierBadge.className = `score-tier-badge ${tier.cls || 'tier-medium'}`;
+      }
   }
 
   const narrative = document.getElementById('score-narrative');
-  if(narrative) narrative.textContent = getScoreNarrative(pct, tier);
+  if(narrative) {
+      // T-13: Show critical gate trigger reason if CRITICAL_FAILURE
+      if (assessment.verdict === 'CRITICAL_FAILURE' && assessment.criticalGateTrigger) {
+        narrative.textContent = `⛔ CRITICAL REGULATORY EXPOSURE: ${assessment.criticalGateTrigger} This represents a high-risk non-compliance state. Immediate executive escalation and remediation are required.`;
+      } else {
+        narrative.textContent = getScoreNarrative(pct, tier);
+      }
+  }
 }
 
 function updateRemediationVisibility(milestoneId) {
